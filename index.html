@@ -1,0 +1,1368 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>免费 AI API 资源目录 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Noto+Serif+SC:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a0c10;--surface:#111318;--surface2:#181c23;--border:#1e2330;--border2:#2a3045;--text:#e8eaf0;--text2:#8a90a8;--text3:#4a5068;--accent:#4fffb0;--accent2:#38d9f5;--accent3:#ff6b6b;--accent4:#ffc94a;--accent5:#a78bfa;--mono:'JetBrains Mono',monospace;--serif:'Noto Serif SC',serif}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:var(--mono);font-size:14px;line-height:1.6;min-height:100vh;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(78,255,176,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(78,255,176,.025) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;z-index:0}
+header{position:relative;z-index:10;padding:4rem 2rem 2rem;max-width:1300px;margin:0 auto;border-bottom:1px solid var(--border)}
+.header-tag{font-size:11px;color:var(--accent);letter-spacing:.15em;text-transform:uppercase;margin-bottom:1rem;opacity:.8}
+header h1{font-family:var(--serif);font-size:clamp(2rem,5vw,3.2rem);font-weight:700;color:var(--text);line-height:1.1;letter-spacing:-.02em}
+header h1 span{color:var(--accent)}
+.header-sub{margin-top:.75rem;color:var(--text2);font-size:13px;max-width:640px;line-height:1.7}
+.header-meta{display:flex;gap:1rem;margin-top:1.5rem;flex-wrap:wrap}
+.meta-pill{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--text2);background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:4px 12px}
+.meta-pill .dot{width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 6px var(--accent);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+.filter-bar{position:sticky;top:0;z-index:20;background:rgba(10,12,16,.95);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:.75rem 2rem}
+.filter-inner{max-width:1300px;margin:0 auto;display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.filter-label{font-size:11px;color:var(--text3);letter-spacing:.1em;text-transform:uppercase;margin-right:4px}
+.tab-btn{font-family:var(--mono);font-size:12px;padding:4px 14px;border-radius:4px;border:1px solid var(--border2);background:transparent;color:var(--text2);cursor:pointer;transition:all .15s}
+.tab-btn:hover{border-color:var(--accent);color:var(--accent)}
+.tab-btn.active{background:var(--accent);color:#000;border-color:var(--accent);font-weight:700}
+.search-box{margin-left:auto;display:flex;align-items:center;gap:8px;background:var(--surface);border:1px solid var(--border2);border-radius:4px;padding:4px 10px}
+.search-box input{font-family:var(--mono);font-size:12px;background:none;border:none;outline:none;color:var(--text);width:200px}
+.search-box input::placeholder{color:var(--text3)}
+main{position:relative;z-index:5;max-width:1300px;margin:0 auto;padding:2rem}
+.stats-bar{display:flex;gap:28px;padding:1.25rem 0;border-bottom:1px solid var(--border);margin-bottom:.5rem;flex-wrap:wrap}
+.stat{display:flex;flex-direction:column;gap:2px}
+.stat-val{font-size:22px;font-weight:700;color:var(--accent);line-height:1}
+.stat-key{font-size:11px;color:var(--text3)}
+.section-header{display:flex;align-items:center;gap:12px;margin:2.5rem 0 1.25rem}
+.section-header h2{font-family:var(--serif);font-size:1.1rem;font-weight:400;color:var(--text2);letter-spacing:.05em;white-space:nowrap}
+.section-line{flex:1;height:1px;background:var(--border)}
+.section-count{font-size:11px;color:var(--text3);background:var(--surface2);border:1px solid var(--border);border-radius:20px;padding:2px 10px;white-space:nowrap}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(350px,1fr));gap:12px}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:8px;overflow:hidden;transition:border-color .2s,transform .2s;display:flex;flex-direction:column}
+.card:hover{border-color:var(--border2);transform:translateY(-2px)}
+.card.hidden{display:none}
+.card-head{padding:16px 18px 12px;border-bottom:1px solid var(--border);display:flex;align-items:flex-start;gap:12px}
+.card-icon{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;background:var(--surface2);border:1px solid var(--border2)}
+.card-title-group{flex:1;min-width:0}
+.card-name{font-size:15px;font-weight:500;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.card-url{font-size:11px;color:var(--text3);margin-top:2px}
+.card-badges{display:flex;gap:4px;flex-wrap:wrap;margin-top:6px}
+.badge{font-size:10px;font-family:var(--mono);padding:2px 7px;border-radius:3px;font-weight:500;letter-spacing:.03em}
+.b-free{background:rgba(78,255,176,.12);color:var(--accent);border:1px solid rgba(78,255,176,.25)}
+.b-cn{background:rgba(255,107,107,.12);color:var(--accent3);border:1px solid rgba(255,107,107,.25)}
+.b-vpn{background:rgba(56,217,245,.12);color:var(--accent2);border:1px solid rgba(56,217,245,.25)}
+.b-img{background:rgba(167,139,250,.12);color:var(--accent5);border:1px solid rgba(167,139,250,.25)}
+.b-paid{background:rgba(255,201,74,.12);color:var(--accent4);border:1px solid rgba(255,201,74,.25)}
+.b-fast{background:rgba(78,255,176,.07);color:#6fffcc;border:1px solid rgba(78,255,176,.12)}
+.card-body{padding:14px 18px;flex:1}
+.card-desc{font-size:12px;color:var(--text2);line-height:1.75}
+.quota-table{width:100%;border-collapse:collapse;margin-top:12px;font-size:11px}
+.quota-table th{text-align:left;padding:5px 8px;background:var(--surface2);color:var(--text3);border-bottom:1px solid var(--border);font-weight:500;letter-spacing:.05em;text-transform:uppercase}
+.quota-table td{padding:5px 8px;border-bottom:1px solid var(--border);color:var(--text);vertical-align:top}
+.quota-table tr:last-child td{border-bottom:none}
+.quota-table tr:hover td{background:rgba(255,255,255,.02)}
+.q-good{color:var(--accent)}
+.q-warn{color:var(--accent4)}
+.q-bad{color:var(--accent3)}
+.q-note{color:var(--text3);font-size:10px}
+.card-code{background:#0d1017;border-top:1px solid var(--border);position:relative}
+.code-tabs{display:flex;gap:0;border-bottom:1px solid var(--border);padding:0 18px}
+.code-tab{font-family:var(--mono);font-size:11px;color:var(--text3);padding:6px 12px 5px;cursor:pointer;border-bottom:2px solid transparent;transition:all .15s;background:none;border-top:none;border-left:none;border-right:none}
+.code-tab.active{color:var(--accent);border-bottom-color:var(--accent)}
+.code-panel{display:none;padding:14px 18px;overflow-x:auto}
+.code-panel.active{display:block}
+pre{font-family:var(--mono);font-size:11px;color:#c8d3f5;white-space:pre;line-height:1.7}
+.kw{color:#c792ea}.str{color:#c3e88d}.cmt{color:#4a5068}.fn{color:var(--accent2)}.num{color:var(--accent4)}
+.copy-btn{position:absolute;top:36px;right:12px;font-family:var(--mono);font-size:10px;color:var(--text3);background:var(--surface2);border:1px solid var(--border);border-radius:4px;padding:3px 8px;cursor:pointer;transition:all .15s}
+.copy-btn:hover{color:var(--accent);border-color:var(--accent)}
+.card-foot{padding:10px 18px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.foot-link{font-size:11px;color:var(--accent2);text-decoration:none}
+.foot-link:hover{color:var(--accent)}
+.foot-link::after{content:' →'}
+.foot-note{font-size:10px;color:var(--text3)}
+footer{position:relative;z-index:5;max-width:1300px;margin:4rem auto 0;padding:2rem;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+.footer-note{font-size:12px;color:var(--text3);line-height:1.7}
+.footer-gh{font-size:12px;color:var(--accent2);text-decoration:none}
+@media(max-width:640px){.grid{grid-template-columns:1fr}header{padding:2rem 1rem 1.5rem}main{padding:1rem}.filter-bar{padding:.6rem 1rem}.search-box{display:none}.stats-bar{gap:16px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="header-tag">// Free AI API Directory · Updated 2026-06-01 · Verified against official docs &amp; TokenMix.ai</div>
+  <h1>免费 AI API<br><span>资源目录 2026</span></h1>
+  <p class="header-sub">汇集全球 23 个可免费调用的大模型 API 平台，包含精确的 RPM / TPM / RPD / 每日 token 限额，均来自官方文档或 2026 年 4-5 月实测数据。</p>
+  <div class="header-meta">
+    <div class="meta-pill"><span class="dot"></span>数据实时更新</div>
+    <div class="meta-pill">🇨🇳 12 个国内直连平台</div>
+    <div class="meta-pill">🌐 8 个国际平台</div>
+    <div class="meta-pill">🖼️ 3 个图像生成专用</div>
+    <div class="meta-pill">📊 含精确限额 RPM/TPM/RPD</div>
+  </div>
+</header>
+
+<div class="filter-bar">
+  <div class="filter-inner">
+    <span class="filter-label">筛选</span>
+    <button class="tab-btn active" onclick="filter('all',this)">全部</button>
+    <button class="tab-btn" onclick="filter('cn',this)">🇨🇳 国内直连</button>
+    <button class="tab-btn" onclick="filter('intl',this)">🌐 国际</button>
+    <button class="tab-btn" onclick="filter('image',this)">🖼️ 图像生成</button>
+    <button class="tab-btn" onclick="filter('nocard',this)">💳 免绑卡</button>
+    <div class="search-box">
+      <span style="color:var(--text3)">⌕</span>
+      <input type="text" placeholder="搜索平台名 / 模型 / 特性..." oninput="doSearch(this.value)"/>
+    </div>
+  </div>
+</div>
+
+<main>
+<div class="stats-bar">
+  <div class="stat"><div class="stat-val" id="visible-count">23</div><div class="stat-key">当前显示平台数</div></div>
+  <div class="stat"><div class="stat-val">12</div><div class="stat-key">国内直连平台</div></div>
+  <div class="stat"><div class="stat-val">100万</div><div class="stat-key">Cerebras 每日免费 token（最多）</div></div>
+  <div class="stat"><div class="stat-val">$0</div><div class="stat-key">基础使用费用</div></div>
+</div>
+
+<!-- ════════════════ 国内平台 ════════════════ -->
+<div class="section-header">
+  <h2>🇨🇳 国内平台 · 无需翻墙直连</h2>
+  <div class="section-line"></div>
+  <div class="section-count">12 个</div>
+</div>
+<div class="grid">
+
+<!-- 硅基流动 -->
+<div class="card" data-tags="cn free nocard">
+  <div class="card-head">
+    <div class="card-icon">🔥</div>
+    <div class="card-title-group">
+      <div class="card-name">硅基流动 SiliconCloud</div>
+      <div class="card-url">cloud.siliconflow.cn</div>
+      <div class="card-badges">
+        <span class="badge b-cn">国内直连</span>
+        <span class="badge b-free">注册赠 token</span>
+        <span class="badge b-img">支持图像生成</span>
+        <span class="badge b-fast">⚡ 低延迟</span>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="card-desc">国内首推聚合平台，支持 DeepSeek-V3/R1、Qwen3 全系、GLM-4、FLUX 图像生成等，新用户注册赠免费 token，OpenAI 格式兼容，延迟极低。</div>
+    <table class="quota-table">
+      <tr><th>项目</th><th>额度 / 限制</th></tr>
+      <tr><td>注册赠送</td><td class="q-good">免费 token（注册立得，无时限）</td></tr>
+      <tr><td>图像生成</td><td class="q-good">支持 FLUX.1-schnell，付费 ≈¥0.1/张</td></tr>
+      <tr><td>API 格式</td><td>OpenAI 兼容</td></tr>
+      <tr><td>信用卡</td><td class="q-good">不需要</td></tr>
+    </table>
+  </div>
+  <div class="card-code">
+    <div class="code-tabs">
+      <button class="code-tab active" onclick="showTab(this,'sfc-py')">文字</button>
+      <button class="code-tab" onclick="showTab(this,'sfc-img')">图像生成</button>
+    </div>
+    <button class="copy-btn" onclick="copyCode(this)">copy</button>
+    <div class="code-panel active" id="sfc-py"><pre><span class="kw">from</span> openai <span class="kw">import</span> OpenAI
+client = OpenAI(
+    api_key=<span class="str">"sk-你的硅基流动Key"</span>,
+    base_url=<span class="str">"https://api.siliconflow.cn/v1"</span>,
+)
+resp = client.chat.completions.<span class="fn">create</span>(
+    model=<span class="str">"deepseek-ai/DeepSeek-V3"</span>,
+    messages=[{<span class="str">"role"</span>:<span class="str">"user"</span>,<span class="str">"content"</span>:<span class="str">"你好！"</span>}],
+)
+<span class="fn">print</span>(resp.choices[<span class="num">0</span>].message.content)</pre></div>
+    <div class="code-panel" id="sfc-img"><pre><span class="kw">import</span> requests
+resp = requests.<span class="fn">post</span>(
+    <span class="str">"https://api.siliconflow.cn/v1/images/generations"</span>,
+    headers={<span class="str">"Authorization"</span>:<span class="str">"Bearer sk-你的Key"</span>},
+    json={<span class="str">"model"</span>:<span class="str">"black-forest-labs/FLUX.1-schnell"</span>,
+          <span class="str">"prompt"</span>:<span class="str">"a cat on the moon"</span>,
+          <span class="str">"image_size"</span>:<span class="str">"1024x1024"</span>},
+)
+<span class="fn">print</span>(resp.json()[<span class="str">"data"</span>][<span class="num">0</span>][<span class="str">"url"</span>])</pre></div>
+  </div>
+  <div class="card-foot">
+    <a class="foot-link" href="https://cloud.siliconflow.cn" target="_blank">获取 API Key</a>
+    <span class="foot-note">注册 → 右上角头像 → API Keys</span>
+  </div>
+</div>
+
+<!-- 火山引擎 -->
+<div class="card" data-tags="cn free nocard">
+  <div class="card-head">
+    <div class="card-icon">🌋</div>
+    <div class="card-title-group">
+      <div class="card-name">火山引擎（字节·方舟）</div>
+      <div class="card-url">volcengine.com/product/ark</div>
+      <div class="card-badges">
+        <span class="badge b-cn">国内直连</span>
+        <span class="badge b-free">200万 token/天</span>
+        <span class="badge b-fast">⚡ 每天重置</span>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="card-desc">字节跳动旗下，每天赠 200 万 token 且每天重置，支持豆包 MoE、DeepSeek-V3/R1、Qwen3，是国内额度最慷慨的永久免费平台，适合自动化任务。</div>
+    <table class="quota-table">
+      <tr><th>项目</th><th>额度 / 限制</th></tr>
+      <tr><td>每日 token</td><td class="q-good">200万，每天 00:00 重置（永久）</td></tr>
+      <tr><td>适用模型</td><td>豆包 MoE、DeepSeek-V3/R1、Qwen3</td></tr>
+      <tr><td>API 格式</td><td>OpenAI 兼容</td></tr>
+      <tr><td>信用卡</td><td class="q-good">不需要</td></tr>
+      <tr><td>注意</td><td class="q-note">需在控制台创建「接入点」获取 endpoint-id</td></tr>
+    </table>
+  </div>
+  <div class="card-code">
+    <div class="code-tabs">
+      <button class="code-tab active" onclick="showTab(this,'ark-py')">Python</button>
+    </div>
+    <button class="copy-btn" onclick="copyCode(this)">copy</button>
+    <div class="code-panel active" id="ark-py"><pre><span class="kw">from</span> openai <span class="kw">import</span> OpenAI
+client = OpenAI(
+    api_key=<span class="str">"你的火山引擎 API Key"</span>,
+    base_url=<span class="str">"https://ark.cn-beijing.volces.com/api/v3"</span>,
+)
+resp = client.chat.completions.<span class="fn">create</span>(
+    model=<span class="str">"ep-你的endpoint-id"</span>,<span class="cmt"> # 控制台创建接入点</span>
+    messages=[{<span class="str">"role"</span>:<span class="str">"user"</span>,<span class="str">"content"</span>:<span class="str">"你好！"</span>}],
+)
+<span class="fn">print</span>(resp.choices[<span class="num">0</span>].message.content)</pre></div>
+  </div>
+  <div class="card-foot">
+    <a class="foot-link" href="https://www.volcengine.com/product/ark" target="_blank">获取 API Key</a>
+    <span class="foot-note">方舟控制台 → API Key 管理 → 创建接入点</span>
+  </div>
+</div>
+
+<!-- 智谱AI -->
+<div class="card" data-tags="cn free nocard">
+  <div class="card-head">
+    <div class="card-icon">🧠</div>
+    <div class="card-title-group">
+      <div class="card-name">智谱 AI（Z.ai / BigModel）</div>
+      <div class="card-url">bigmodel.cn</div>
+      <div class="card-badges">
+        <span class="badge b-cn">国内直连</span>
+        <span class="badge b-free">2000万 token + 永久免费模型</span>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="card-desc">实名认证后赠 2000 万 token，GLM-4-Flash 完全永久免费（不扣额度），GLM-5 系列能力强。</div>
+    <table class="quota-table">
+      <tr><th>项目</th><th>额度 / 限制</th></tr>
+      <tr><td>注册赠送</td><td class="q-good">2000万 token（实名认证后）</td></tr>
+      <tr><td>永久免费模型</td><td class="q-good">GLM-4-Flash（永不扣费）</td></tr>
+      <tr><td>GLM-4-Flash RPM</td><td>60 RPM</td></tr>
+      <tr><td>API 格式</td><td>OpenAI 兼容</td></tr>
+      <tr><td>信用卡</td><td class="q-good">不需要</td></tr>
+    </table>
+  </div>
+  <div class="card-code">
+    <div class="code-tabs">
+      <button class="code-tab active" onclick="showTab(this,'zhipu-py')">Python</button>
+    </div>
+    <button class="copy-btn" onclick="copyCode(this)">copy</button>
+    <div class="code-panel active" id="zhipu-py"><pre><span class="kw">from</span> openai <span class="kw">import</span> OpenAI
+client = OpenAI(
+    api_key=<span class="str">"你的智谱 API Key"</span>,
+    base_url=<span class="str">"https://open.bigmodel.cn/api/paas/v4/"</span>,
+)
+resp = client.chat.completions.<span class="fn">create</span>(
+    model=<span class="str">"glm-4-flash"</span>,<span class="cmt"> # 永久免费</span>
+    messages=[{<span class="str">"role"</span>:<span class="str">"user"</span>,<span class="str">"content"</span>:<span class="str">"你好！"</span>}],
+)
+<span class="fn">print</span>(resp.choices[<span class="num">0</span>].message.content)</pre></div>
+  </div>
+  <div class="card-foot">
+    <a class="foot-link" href="https://bigmodel.cn" target="_blank">获取 API Key</a>
+    <span class="foot-note">注册 → 控制台 → API Keys</span>
+  </div>
+</div>
+
+<!-- 阿里云百炼 -->
+<div class="card" data-tags="cn free nocard">
+  <div class="card-head">
+    <div class="card-icon">☁️</div>
+    <div class="card-title-group">
+      <div class="card-name">阿里云百炼（DashScope）</div>
+      <div class="card-url">bailian.console.aliyun.com</div>
+      <div class="card-badges">
+        <span class="badge b-cn">国内直连</span>
+        <span class="badge b-free">赠金 + 免费模型配额</span>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="card-desc">Qwen 系列全球最强中文开源模型。新用户赠金 3 个月有效，qwen-long 有长期免费月度配额。</div>
+    <table class="quota-table">
+      <tr><th>项目</th><th>额度 / 限制</th></tr>
+      <tr><td>新用户赠金</td><td class="q-warn">有效期约 3 个月</td></tr>
+      <tr><td>qwen-long 免费配额</td><td class="q-good">100万 token/月（长期）</td></tr>
+      <tr><td>qwen-long 限速</td><td>60 RPM，3万 TPM</td></tr>
+      <tr><td>API 格式</td><td>OpenAI 兼容（DashScope endpoint）</td></tr>
+      <tr><td>信用卡</td><td class="q-good">不需要（需实名认证）</td></tr>
+    </table>
+  </div>
+  <div class="card-code">
+    <div class="code-tabs">
+      <button class="code-tab active" onclick="showTab(this,'ali-py')">Python</button>
+    </div>
+    <button class="copy-btn" onclick="copyCode(this)">copy</button>
+    <div class="code-panel active" id="ali-py"><pre><span class="kw">from</span> openai <span class="kw">import</span> OpenAI
+client = OpenAI(
+    api_key=<span class="str">"sk-你的阿里云 API Key"</span>,
+    base_url=<span class="str">"https://dashscope.aliyuncs.com/compatible-mode/v1"</span>,
+)
+resp = client.chat.completions.<span class="fn">create</span>(
+    model=<span class="str">"qwen-long"</span>,<span class="cmt"> # 100万 token/月免费配额</span>
+    messages=[{<span class="str">"role"</span>:<span class="str">"user"</span>,<span class="str">"content"</span>:<span class="str">"你好！"</span>}],
+)
+<span class="fn">print</span>(resp.choices[<span class="num">0</span>].message.content)</pre></div>
+  </div>
+  <div class="card-foot">
+    <a class="foot-link" href="https://bailian.console.aliyun.com" target="_blank">获取 API Key</a>
+    <span class="foot-note">百炼控制台 → API-KEY 管理 → 创建</span>
+  </div>
+</div>
+
+<!-- 腾讯混元 -->
+<div class="card" data-tags="cn free nocard">
+  <div class="card-head">
+    <div class="card-icon">🐧</div>
+    <div class="card-title-group">
+      <div class="card-name">腾讯混元</div>
+      <div class="card-url">hunyuan.tencent.com/dev</div>
+      <div class="card-badges">
+        <span class="badge b-cn">国内直连</span>
+        <span class="badge b-free">400万 token + 永久免费 Lite</span>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="card-desc">新用户赠 400 万 token，hunyuan-lite 模型永久免费。按量付费无最低消费，适合对接腾讯生态。</div>
+    <table class="quota-table">
+      <tr><th>项目</th><th>额度 / 限制</th></tr>
+      <tr><td>新用户赠送</td><td class="q-good">400万 token（有效期 6 个月）</td></tr>
+      <tr><td>永久免费模型</td><td class="q-good">hunyuan-lite（永不扣费）</td></tr>
+      <tr><td>Lite 限速</td><td>5 RPM，20万 TPM</td></tr>
+      <tr><td>API 格式</td><td>OpenAI 兼容</td></tr>
+      <tr><td>信用卡</td><td class="q-good">不需要</td></tr>
+    </table>
+  </div>
+  <div class="card-code">
+    <div class="code-tabs">
+      <button class="code-tab active" onclick="showTab(this,'hyt-py')">Python</button>
+    </div>
+    <button class="copy-btn" onclick="copyCode(this)">copy</button>
+    <div class="code-panel active" id="hyt-py"><pre><span class="kw">from</span> openai <span class="kw">import</span> OpenAI
+client = OpenAI(
+    api_key=<span class="str">"你的腾讯混元 API Key"</span>,
+    base_url=<span class="str">"https://api.hunyuan.cloud.tencent.com/v1"</span>,
+)
+resp = client.chat.completions.<span class="fn">create</span>(
+    model=<span class="str">"hunyuan-lite"</span>,<span class="cmt"> # 永久免费</span>
+    messages=[{<span class="str">"role"</span>:<span class="str">"user"</span>,<span class="str">"content"</span>:<span class="str">"你好！"</span>}],
+)
+<span class="fn">print</span>(resp.choices[<span class="num">0</span>].message.content)</pre></div>
+  </div>
+  <div class="card-foot">
+    <a class="foot-link" href="https://hunyuan.tencent.com/dev" target="_blank">获取 API Key</a>
+    <span class="foot-note">开发者中心 → 密钥管理 → 新建密钥</span>
+  </div>
+</div>
+
+<!-- Kimi -->
+<div class="card" data-tags="cn free nocard">
+  <div class="card-head">
+    <div class="card-icon">🌙</div>
+    <div class="card-title-group">
+      <div class="card-name">Kimi（月之暗面）</div>
+      <div class="card-url">platform.moonshot.cn</div>
+      <div class="card-badges">
+        <span class="badge b-cn">国内直连</span>
+        <span class="badge b-free">新用户赠金</span>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="card-desc">长文本处理能力突出，支持 128K 超长上下文，适合文档分析和代码理解，是长文本场景首选。</div>
+    <table class="quota-table">
+      <tr><th>项目</th><th>额度 / 限制</th></tr>
+      <tr><td>注册赠金</td><td class="q-warn">一次性赠金（尽快使用）</td></tr>
+      <tr><td>上下文长度</td><td class="q-good">128K tokens</td></tr>
+      <tr><td>主力模型</td><td>moonshot-v1-8k / 32k / 128k</td></tr>
+      <tr><td>API 格式</td><td>OpenAI 兼容</td></tr>
+      <tr><td>信用卡</td><td class="q-good">不需要</td></tr>
+    </table>
+  </div>
+  <div class="card-code">
+    <div class="code-tabs">
+      <button class="code-tab active" onclick="showTab(this,'kimi-py')">Python</button>
+    </div>
+    <button class="copy-btn" onclick="copyCode(this)">copy</button>
+    <div class="code-panel active" id="kimi-py"><pre><span class="kw">from</span> openai <span class="kw">import</span> OpenAI
+client = OpenAI(
+    api_key=<span class="str">"sk-你的 Kimi API Key"</span>,
+    base_url=<span class="str">"https://api.moonshot.cn/v1"</span>,
+)
+resp = client.chat.completions.<span class="fn">create</span>(
+    model=<span class="str">"moonshot-v1-8k"</span>,
+    messages=[{<span class="str">"role"</span>:<span class="str">"user"</span>,<span class="str">"content"</span>:<span class="str">"你好！"</span>}],
+)
+<span class="fn">print</span>(resp.choices[<span class="num">0</span>].message.content)</pre></div>
+  </div>
+  <div class="card-foot">
+    <a class="foot-link" href="https://platform.moonshot.cn" target="_blank">获取 API Key</a>
+    <span class="foot-note">控制台 → API Key 管理 → 新建</span>
+  </div>
+</div>
+
+<!-- 百度千帆 -->
+<div class="card" data-tags="cn free nocard">
+  <div class="card-head">
+    <div class="card-icon">🦅</div>
+    <div class="card-title-group">
+      <div class="card-name">百度千帆（ERNIE）</div>
+      <div class="card-url">qianfan.cloud.baidu.com</div>
+      <div class="card-badges">
+        <span class="badge b-cn">国内直连</span>
+        <span class="badge b-free">ERNIE-Speed 永久免费</span>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="card-desc">ERNIE-Speed / Lite 系列永久免费，工具链完整（含微调、标注），适合需要模型训练微调的企业用户。</div>
+    <table class="quota-table">
+      <tr><th>项目</th><th>额度 / 限制</th></tr>
+      <tr><td>永久免费模型</td><td class="q-good">ERNIE-Speed-8K、ERNIE-Lite-8K</td></tr>
+      <tr><td>ERNIE-Speed 限速</td><td>60 RPM，200万 TPD</td></tr>
+      <tr><td>新用户赠金</td><td class="q-warn">有效期约 1 年</td></tr>
+      <tr><td>API 格式</td><td>OpenAI 兼容（v2 端点）</td></tr>
+      <tr><td>信用卡</td><td class="q-good">不需要（需实名认证）</td></tr>
+    </table>
+  </div>
+  <div class="card-code">
+    <div class="code-tabs">
+      <button class="code-tab active" onclick="showTab(this,'bd-py')">Python</button>
+    </div>
+    <button class="copy-btn" onclick="copyCode(this)">copy</button>
+    <div class="code-panel active" id="bd-py"><pre><span class="kw">from</span> openai <span class="kw">import</span> OpenAI
+client = OpenAI(
+    api_key=<span class="str">"你的千帆 API Key"</span>,
+    base_url=<span class="str">"https://qianfan.baidubce.com/v2"</span>,
+)
+resp = client.chat.completions.<span class="fn">create</span>(
+    model=<span class="str">"ernie-speed-8k"</span>,<span class="cmt"> # 永久免费</span>
+    messages=[{<span class="str">"role"</span>:<span class="str">"user"</span>,<span class="str">"content"</span>:<span class="str">"你好！"</span>}],
+)
+<span class="fn">print</span>(resp.choices[<span class="num">0</span>].message.content)</pre></div>
+  </div>
+  <div class="card-foot">
+    <a class="foot-link" href="https://qianfan.cloud.baidu.com" target="_blank">获取 API Key</a>
+    <span class="foot-note">控制台 → 应用接入 → 创建应用</span>
+  </div>
+</div>
+
+<!-- MiniMax -->
+<div class="card" data-tags="cn free nocard">
+  <div class="card-head">
+    <div class="card-icon">🎯</div>
+    <div class="card-title-group">
+      <div class="card-name">MiniMax</div>
+      <div class="card-url">platform.minimaxi.com</div>
+      <div class="card-badges">
+        <span class="badge b-cn">国内直连</span>
+        <span class="badge b-free">试用额度</span>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="card-desc">M2.7 全模态模型，支持语言、视频、语音、图像多模态，上下文最长 1M tokens，新用户有试用额度。</div>
+    <table class="quota-table">
+      <tr><th>项目</th><th>额度 / 限制</th></tr>
+      <tr><td>注册赠金</td><td class="q-good">试用额度（可调用 M2.7）</td></tr>
+      <tr><td>上下文</td><td class="q-good">最大 1M tokens</td></tr>
+      <tr><td>多模态</td><td class="q-good">语言 / 图像 / 音频 / 视频</td></tr>
+      <tr><td>API 格式</td><td>OpenAI 兼容</td></tr>
+      <tr><td>信用卡</td><td class="q-good">不需要</td></tr>
+    </table>
+  </div>
+  <div class="card-code">
+    <div class="code-tabs">
+      <button class="code-tab active" onclick="showTab(this,'mm-py')">Python</button>
+    </div>
+    <button class="copy-btn" onclick="copyCode(this)">copy</button>
+    <div class="code-panel active" id="mm-py"><pre><span class="kw">from</span> openai <span class="kw">import</span> OpenAI
+client = OpenAI(
+    api_key=<span class="str">"你的 MiniMax API Key"</span>,
+    base_url=<span class="str">"https://api.minimaxi.com/v1"</span>,
+)
+resp = client.chat.completions.<span class="fn">create</span>(
+    model=<span class="str">"MiniMax-Text-01"</span>,
+    messages=[{<span class="str">"role"</span>:<span class="str">"user"</span>,<span class="str">"content"</span>:<span class="str">"你好！"</span>}],
+)
+<span class="fn">print</span>(resp.choices[<span class="num">0</span>].message.content)</pre></div>
+  </div>
+  <div class="card-foot">
+    <a class="foot-link" href="https://platform.minimaxi.com" target="_blank">获取 API Key</a>
+    <span class="foot-note">控制台 → 账号信息 → API Keys</span>
+  </div>
+</div>
+
+<!-- 讯飞星火 -->
+<div class="card" data-tags="cn free nocard">
+  <div class="card-head">
+    <div class="card-icon">✨</div>
+    <div class="card-title-group">
+      <div class="card-name">讯飞星火</div>
+      <div class="card-url">xinghuo.xfyun.cn</div>
+      <div class="card-badges">
+        <span class="badge b-cn">国内直连</span>
+        <span class="badge b-free">每模型 20-200万 token</span>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="card-desc">每个模型独立赠 20-200 万 token，语音 TTS/ASR 生态完整，K12 教育和自然语音交互有独特优势。</div>
+    <table class="quota-table">
+      <tr><th>项目</th><th>额度 / 限制</th></tr>
+      <tr><td>注册赠送</td><td class="q-good">各模型赠 20万~200万 token</td></tr>
+      <tr><td>免费限速</td><td>2 QPS（每秒 2 请求）</td></tr>
+      <tr><td>语音能力</td><td class="q-good">TTS / ASR 完整生态</td></tr>
+      <tr><td>API 格式</td><td>OpenAI 兼容（新版接口）</td></tr>
+      <tr><td>信用卡</td><td class="q-good">不需要</td></tr>
+    </table>
+  </div>
+  <div class="card-code">
+    <div class="code-tabs">
+      <button class="code-tab active" onclick="showTab(this,'xf-py')">Python</button>
+    </div>
+    <button class="copy-btn" onclick="copyCode(this)">copy</button>
+    <div class="code-panel active" id="xf-py"><pre><span class="kw">from</span> openai <span class="kw">import</span> OpenAI
+client = OpenAI(
+    api_key=<span class="str">"你的讯飞星火 API Key"</span>,
+    base_url=<span class="str">"https://spark-api-open.xf-yun.com/v1"</span>,
+)
+resp = client.chat.completions.<span class="fn">create</span>(
+    model=<span class="str">"lite"</span>,<span class="cmt"> # 或 generalv3.5 / pro-128k</span>
+    messages=[{<span class="str">"role"</span>:<span class="str">"user"</span>,<span class="str">"content"</span>:<span class="str">"你好！"</span>}],
+)
+<span class="fn">print</span>(resp.choices[<span class="num">0</span>].message.content)</pre></div>
+  </div>
+  <div class="card-foot">
+    <a class="foot-link" href="https://xinghuo.xfyun.cn" target="_blank">获取 API Key</a>
+    <span class="foot-note">控制台 → 我的应用 → APIKey</span>
+  </div>
+</div>
+
+<!-- 魔搭 -->
+<div class="card" data-tags="cn free nocard">
+  <div class="card-head">
+    <div class="card-icon">🐱</div>
+    <div class="card-title-group">
+      <div class="card-name">魔搭社区（ModelScope）</div>
+      <div class="card-url">modelscope.cn</div>
+      <div class="card-badges">
+        <span class="badge b-cn">国内直连</span>
+        <span class="badge b-free">2000次/天</span>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="card-desc">阿里旗下，每天 2000 次免费调用，10万+ 社区开源模型，支持 Qwen 全系与 FLUX 图像生成，适合模型探索与科研。</div>
+    <table class="quota-table">
+      <tr><th>项目</th><th>额度 / 限制</th></tr>
+      <tr><td>每日请求数</td><td class="q-good">2000次（每天 UTC+8 00:00 重置）</td></tr>
+      <tr><td>并发限制</td><td>5 并发请求</td></tr>
+      <tr><td>模型数量</td><td class="q-good">10万+ 开源模型</td></tr>
+      <tr><td>API 格式</td><td>OpenAI 兼容</td></tr>
+      <tr><td>信用卡</td><td class="q-good">不需要（需绑定阿里云账号）</td></tr>
+    </table>
+  </div>
+  <div class="card-code">
+    <div class="code-tabs">
+      <button class="code-tab active" onclick="showTab(this,'ms-py')">Python</button>
+    </div>
+    <button class="copy-btn" onclick="copyCode(this)">copy</button>
+    <div class="code-panel active" id="ms-py"><pre><span class="kw">from</span> openai <span class="kw">import</span> OpenAI
+client = OpenAI(
+    api_key=<span class="str">"你的 ModelScope Token"</span>,
+    base_url=<span class="str">"https://api-inference.modelscope.cn/v1"</span>,
+)
+resp = client.chat.completions.<span class="fn">create</span>(
+    model=<span class="str">"Qwen/Qwen2.5-72B-Instruct"</span>,
+    messages=[{<span class="str">"role"</span>:<span class="str">"user"</span>,<span class="str">"content"</span>:<span class="str">"你好！"</span>}],
+)
+<span class="fn">print</span>(resp.choices[<span class="num">0</span>].message.content)</pre></div>
+  </div>
+  <div class="card-foot">
+    <a class="foot-link" href="https://modelscope.cn" target="_blank">获取 Token</a>
+    <span class="foot-note">个人中心 → 访问令牌 → 创建</span>
+  </div>
+</div>
+
+<!-- OpenCode Zen -->
+<div class="card" data-tags="cn free">
+  <div class="card-head">
+    <div class="card-icon">🥒</div>
+    <div class="card-title-group">
+      <div class="card-name">OpenCode Zen</div>
+      <div class="card-url">opencode.ai/docs/zen</div>
+      <div class="card-badges">
+        <span class="badge b-cn">国内可访问</span>
+        <span class="badge b-free">无限额（合理范围）</span>
+        <span class="badge b-paid">需绑卡不扣费</span>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="card-desc">Big Pickle、DeepSeek V4 Flash Free、Nemotron 3 Super Free 等限时免费模型，token 无明确上限，但高峰期有共享限流。⚠️ 注册后务必关闭自动充值（默认 $5 以下自动充 $20）。</div>
+    <table class="quota-table">
+      <tr><th>项目</th><th>额度 / 限制</th></tr>
+      <tr><td>每日 token 上限</td><td class="q-good">无明确上限（合理范围内无限）</td></tr>
+      <tr><td>速率限制</td><td class="q-warn">共享资源池，无公开 RPM，高峰期易 429</td></tr>
+      <tr><td>免费模型</td><td>deepseek-v4-flash-free（最稳）/ big-pickle / nemotron-3-super-free</td></tr>
+      <tr><td>免费期限</td><td class="q-warn">限时免费，随时可能结束</td></tr>
+      <tr><td>信用卡</td><td class="q-warn">需绑定（免费模型不扣费，但需关闭自动充值）</td></tr>
+    </table>
+  </div>
+  <div class="card-code">
+    <div class="code-tabs">
+      <button class="code-tab active" onclick="showTab(this,'zen-py')">Python（含重试）</button>
+    </div>
+    <button class="copy-btn" onclick="copyCode(this)">copy</button>
+    <div class="code-panel active" id="zen-py"><pre><span class="kw">import</span> time, random
+<span class="kw">from</span> openai <span class="kw">import</span> OpenAI, RateLimitError
+client = OpenAI(
+    api_key=<span class="str">"你的 OpenCode API Key"</span>,
+    base_url=<span class="str">"https://opencode.ai/zen/v1"</span>,
+)
+<span class="kw">def</span> <span class="fn">chat</span>(model, msgs, max_retry=<span class="num">4</span>):
+    <span class="kw">for</span> i <span class="kw">in</span> <span class="fn">range</span>(max_retry):
+        <span class="kw">try</span>:
+            <span class="kw">return</span> client.chat.completions.<span class="fn">create</span>(
+                model=model, messages=msgs
+            ).choices[<span class="num">0</span>].message.content
+        <span class="kw">except</span> RateLimitError:
+            <span class="kw">if</span> i==max_retry-<span class="num">1</span>: <span class="kw">raise</span>
+            time.<span class="fn">sleep</span>(<span class="num">2</span>**i + random.<span class="fn">random</span>())
+<span class="cmt"># 最稳定: deepseek-v4-flash-free</span>
+<span class="cmt"># 备用:   big-pickle / nemotron-3-super-free</span>
+<span class="fn">print</span>(<span class="fn">chat</span>(<span class="str">"deepseek-v4-flash-free"</span>,
+          [{<span class="str">"role"</span>:<span class="str">"user"</span>,<span class="str">"content"</span>:<span class="str">"Hello!"</span>}]))</pre></div>
+  </div>
+  <div class="card-foot">
+    <a class="foot-link" href="https://opencode.ai" target="_blank">注册获取 Key</a>
+    <span class="foot-note">⚠️ 注册后立即关闭自动充值</span>
+  </div>
+</div>
+
+<!-- Pollinations -->
+<div class="card" data-tags="cn free nocard image">
+  <div class="card-head">
+    <div class="card-icon">🌸</div>
+    <div class="card-title-group">
+      <div class="card-name">Pollinations AI</div>
+      <div class="card-url">gen.pollinations.ai</div>
+      <div class="card-badges">
+        <span class="badge b-cn">国内可访问</span>
+        <span class="badge b-free">flux 图像永久无限免费</span>
+        <span class="badge b-img">文/图/音/视频</span>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="card-desc">开源平台，flux 图像生成永久无限免费，无需注册可直接 URL 调用。GPT-5、Claude、Gemini、DeepSeek Pro 等已加入免费层（2026-05-27）。</div>
+    <table class="quota-table">
+      <tr><th>项目</th><th>额度 / 限制</th></tr>
+      <tr><td>flux 图像</td><td class="q-good">永久无限免费，无需 Key，直接 URL 调用</td></tr>
+      <tr><td>高级模型</td><td class="q-warn">消耗 Pollen（$1 ≈ 1 Pollen），注册每天赠少量</td></tr>
+      <tr><td>1 Pollen 价值</td><td>文字 10万次 / Kontext图 200张 / GPT图 77张</td></tr>
+      <tr><td>pk_ Key 限速</td><td class="q-warn">1 Pollen/小时 per IP+Key（前端用）</td></tr>
+      <tr><td>sk_ Key 限速</td><td class="q-good">无速率限制（仅限后端使用）</td></tr>
+      <tr><td>信用卡</td><td class="q-good">不需要（基础功能）</td></tr>
+    </table>
+  </div>
+  <div class="card-code">
+    <div class="code-tabs">
+      <button class="code-tab active" onclick="showTab(this,'poll-img')">图像（无需Key）</button>
+      <button class="code-tab" onclick="showTab(this,'poll-text')">文字（需Key）</button>
+    </div>
+    <button class="copy-btn" onclick="copyCode(this)">copy</button>
+    <div class="code-panel active" id="poll-img"><pre><span class="kw">import</span> requests, urllib.parse
+prompt = <span class="str">"a cat on the moon, photorealistic"</span>
+url = (<span class="str">"https://image.pollinations.ai/prompt/"</span>
+      + urllib.parse.<span class="fn">quote</span>(prompt)
+      + <span class="str">"?model=flux&width=1024&height=1024"</span>)
+<span class="cmt"># 方式1: 直接当 img src 使用（最简单）</span>
+<span class="fn">print</span>(<span class="str">"图片链接:"</span>, url)
+<span class="cmt"># 方式2: 下载保存</span>
+img = requests.<span class="fn">get</span>(url)
+<span class="kw">with</span> <span class="fn">open</span>(<span class="str">"out.png"</span>,<span class="str">"wb"</span>) <span class="kw">as</span> f: f.<span class="fn">write</span>(img.content)</pre></div>
+    <div class="code-panel" id="poll-text"><pre><span class="kw">from</span> openai <span class="kw">import</span> OpenAI
+client = OpenAI(
+    api_key=<span class="str">"pk_你的Publishable Key"</span>,<span class="cmt"> # enter.pollinations.ai 获取</span>
+    base_url=<span class="str">"https://gen.pollinations.ai/v1"</span>,
+)
+resp = client.chat.completions.<span class="fn">create</span>(
+    model=<span class="str">"openai"</span>,<span class="cmt"> # openai/claude/gemini/deepseek/qwen-coder</span>
+    messages=[{<span class="str">"role"</span>:<span class="str">"user"</span>,<span class="str">"content"</span>:<span class="str">"Hello!"</span>}],
+)
+<span class="fn">print</span>(resp.choices[<span class="num">0</span>].message.content)</pre></div>
+  </div>
+  <div class="card-foot">
+    <a class="foot-link" href="https://enter.pollinations.ai" target="_blank">注册获取 Key</a>
+    <span class="foot-note">图像无需注册，直接调用 URL 即可</span>
+  </div>
+</div>
+
+</div><!-- /grid cn -->
+
+<!-- ════════════════ 国际平台 ════════════════ -->
+<div class="section-header">
+  <h2>🌐 国际平台 · 需要科学上网</h2>
+  <div class="section-line"></div>
+  <div class="section-count">8 个</div>
+</div>
+<div class="grid">
+
+<!-- Google AI Studio -->
+<div class="card" data-tags="intl free nocard">
+  <div class="card-head">
+    <div class="card-icon">🔷</div>
+    <div class="card-title-group">
+      <div class="card-name">Google AI Studio（Gemini）</div>
+      <div class="card-url">aistudio.google.com</div>
+      <div class="card-badges">
+        <span class="badge b-vpn">需翻墙</span>
+        <span class="badge b-free">1500次/天（Flash-Lite）</span>
+        <span class="badge b-fast">⚡ 1M TPM</span>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="card-desc">Gemini 系列最慷慨的免费平台，无需信用卡。⚠️ 配额按 Google Cloud Project 计（非 per Key），多 Key 不叠加。⚠️ 免费层提示词可能被用于 Google 模型训练。</div>
+    <table class="quota-table">
+      <tr><th>模型</th><th>RPM</th><th>TPM</th><th>RPD（每日）</th></tr>
+      <tr><td>Gemini 2.5 Flash-Lite</td><td class="q-good">15</td><td class="q-good">25万</td><td class="q-good">1,500</td></tr>
+      <tr><td>Gemini 2.5 Flash</td><td class="q-warn">10</td><td class="q-good">25万</td><td class="q-warn">250</td></tr>
+      <tr><td>Gemini 2.0 Flash</td><td class="q-warn">15</td><td class="q-good">100万</td><td class="q-warn">200</td></tr>
+      <tr><td>Gemini 2.5 Pro</td><td class="q-bad">5</td><td class="q-bad">25万</td><td class="q-bad">50（仅试用）</td></tr>
+      <tr><td colspan="4" class="q-note">⚠️ 配额 reset 时间: 太平洋时间午夜（北京时间下午 3-4 点）</td></tr>
+    </table>
+  </div>
+  <div class="card-code">
+    <div class="code-tabs">
+      <button class="code-tab active" onclick="showTab(this,'gai-py')">Python</button>
+    </div>
+    <button class="copy-btn" onclick="copyCode(this)">copy</button>
+    <div class="code-panel active" id="gai-py"><pre><span class="kw">from</span> openai <span class="kw">import</span> OpenAI
+client = OpenAI(
+    api_key=<span class="str">"AIza-你的 Google AI Key"</span>,
+    base_url=<span class="str">"https://generativelanguage.googleapis.com/v1beta/openai/"</span>,
+)
+resp = client.chat.completions.<span class="fn">create</span>(
+    model=<span class="str">"gemini-2.5-flash-lite"</span>,<span class="cmt"> # 1500次/天，最高吞吐</span>
+    messages=[{<span class="str">"role"</span>:<span class="str">"user"</span>,<span class="str">"content"</span>:<span class="str">"Hello!"</span>}],
+)
+<span class="fn">print</span>(resp.choices[<span class="num">0</span>].message.content)</pre></div>
+  </div>
+  <div class="card-foot">
+    <a class="foot-link" href="https://aistudio.google.com/apikey" target="_blank">获取 API Key</a>
+    <span class="foot-note">AI Studio → Get API Key → Create API Key</span>
+  </div>
+</div>
+
+<!-- Groq -->
+<div class="card" data-tags="intl free nocard">
+  <div class="card-head">
+    <div class="card-icon">⚡</div>
+    <div class="card-title-group">
+      <div class="card-name">Groq</div>
+      <div class="card-url">console.groq.com</div>
+      <div class="card-badges">
+        <span class="badge b-vpn">需翻墙</span>
+        <span class="badge b-free">1000~14400次/天（按模型）</span>
+        <span class="badge b-fast">⚡ 500+ t/s 全网最快</span>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="card-desc">LPU 芯片极速推理，首 token 延迟约 200ms，是目前速度最快的免费 API。⚠️ 限额按组织计，多 Key 不叠加，RPM/TPM/RPD 三者同时生效，先到先触发。</div>
+    <table class="quota-table">
+      <tr><th>模型</th><th>RPM</th><th>TPM</th><th>RPD（每日）</th></tr>
+      <tr><td>Llama-3.1-8B ⭐推荐</td><td class="q-good">30</td><td class="q-good">6,000</td><td class="q-good">14,400</td></tr>
+      <tr><td>Gemma2-9B</td><td class="q-good">30</td><td class="q-good">15,000</td><td class="q-good">1,000</td></tr>
+      <tr><td>Llama-3.3-70B</td><td class="q-warn">30</td><td class="q-warn">6,000</td><td class="q-warn">1,000</td></tr>
+      <tr><td>Qwen3-32B</td><td class="q-warn">30</td><td class="q-warn">6,000</td><td class="q-warn">1,000</td></tr>
+      <tr><td>Llama-4-Maverick</td><td class="q-bad">15</td><td class="q-bad">3,000</td><td class="q-bad">500</td></tr>
+      <tr><td colspan="4" class="q-note">⚠️ TPM 仅 6000，适合短对话，大 prompt 会很快触发限流</td></tr>
+    </table>
+  </div>
+  <div class="card-code">
+    <div class="code-tabs">
+      <button class="code-tab active" onclick="showTab(this,'groq-py')">Python</button>
+    </div>
+    <button class="copy-btn" onclick="copyCode(this)">copy</button>
+    <div class="code-panel active" id="groq-py"><pre><span class="kw">from</span> openai <span class="kw">import</span> OpenAI
+client = OpenAI(
+    api_key=<span class="str">"gsk_-你的 Groq Key"</span>,
+    base_url=<span class="str">"https://api.groq.com/openai/v1"</span>,
+)
+resp = client.chat.completions.<span class="fn">create</span>(
+    model=<span class="str">"llama-3.1-8b-instant"</span>,<span class="cmt"> # 14400次/天，最大 RPD</span>
+    messages=[{<span class="str">"role"</span>:<span class="str">"user"</span>,<span class="str">"content"</span>:<span class="str">"Hello!"</span>}],
+)
+<span class="fn">print</span>(resp.choices[<span class="num">0</span>].message.content)</pre></div>
+  </div>
+  <div class="card-foot">
+    <a class="foot-link" href="https://console.groq.com/keys" target="_blank">获取 API Key</a>
+    <span class="foot-note">Console → API Keys → Create API Key</span>
+  </div>
+</div>
+
+<!-- Cerebras -->
+<div class="card" data-tags="intl free nocard">
+  <div class="card-head">
+    <div class="card-icon">🧬</div>
+    <div class="card-title-group">
+      <div class="card-name">Cerebras</div>
+      <div class="card-url">cloud.cerebras.ai</div>
+      <div class="card-badges">
+        <span class="badge b-vpn">需翻墙</span>
+        <span class="badge b-free">100万 token/天（最多）</span>
+        <span class="badge b-fast">⚡ 2600 t/s（业界最快）</span>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="card-desc">晶圆级芯片 WSE-3，每天 100 万 token 永久免费，是所有免费 API 中日均额度最大的。⚠️ 免费层上下文最大 8,192 tokens，长对话需要付费。</div>
+    <table class="quota-table">
+      <tr><th>项目</th><th>额度 / 限制</th></tr>
+      <tr><td>每日 token</td><td class="q-good">100万（每天重置，永久免费）</td></tr>
+      <tr><td>RPM</td><td>30 请求/分钟</td></tr>
+      <tr><td>TPM</td><td class="q-good">6万 token/分钟</td></tr>
+      <tr><td>Llama4 Scout 速度</td><td class="q-good">≈ 2,600 t/s（业界最快）</td></tr>
+      <tr><td>⚠️ 免费层上下文</td><td class="q-bad">最大 8,192 tokens（付费后 64K~131K）</td></tr>
+      <tr><td>信用卡</td><td class="q-good">不需要</td></tr>
+    </table>
+  </div>
+  <div class="card-code">
+    <div class="code-tabs">
+      <button class="code-tab active" onclick="showTab(this,'cb-py')">Python</button>
+    </div>
+    <button class="copy-btn" onclick="copyCode(this)">copy</button>
+    <div class="code-panel active" id="cb-py"><pre><span class="kw">from</span> openai <span class="kw">import</span> OpenAI
+client = OpenAI(
+    api_key=<span class="str">"csk-你的 Cerebras Key"</span>,
+    base_url=<span class="str">"https://api.cerebras.ai/v1"</span>,
+)
+resp = client.chat.completions.<span class="fn">create</span>(
+    model=<span class="str">"llama-4-scout-17b-16e-instruct"</span>,
+    messages=[{<span class="str">"role"</span>:<span class="str">"user"</span>,<span class="str">"content"</span>:<span class="str">"Hello!"</span>}],
+    max_tokens=<span class="num">1024</span>,<span class="cmt"> # 免费层 context ≤ 8192 tokens</span>
+)
+<span class="fn">print</span>(resp.choices[<span class="num">0</span>].message.content)</pre></div>
+  </div>
+  <div class="card-foot">
+    <a class="foot-link" href="https://cloud.cerebras.ai" target="_blank">获取 API Key</a>
+    <span class="foot-note">注册 → API Keys → Generate New Key</span>
+  </div>
+</div>
+
+<!-- OpenRouter -->
+<div class="card" data-tags="intl free nocard">
+  <div class="card-head">
+    <div class="card-icon">🔀</div>
+    <div class="card-title-group">
+      <div class="card-name">OpenRouter</div>
+      <div class="card-url">openrouter.ai</div>
+      <div class="card-badges">
+        <span class="badge b-vpn">需翻墙</span>
+        <span class="badge b-free">28+ 永久免费模型</span>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="card-desc">315+ 模型聚合网关，28+ 永久免费模型（ID 以 :free 结尾），一个 Key 访问所有模型。⚠️ 失败请求也计入配额！</div>
+    <table class="quota-table">
+      <tr><th>账户状态</th><th>每日配额（:free 模型）</th><th>RPM</th></tr>
+      <tr><td>未充值（免费用户）</td><td class="q-warn">50次/天（所有 :free 模型合计）</td><td>20</td></tr>
+      <tr><td>充值 ≥ $10（一次性）</td><td class="q-good">1000次/天（永久提升）</td><td>20</td></tr>
+      <tr><td>付费模型</td><td class="q-good">无平台限制</td><td>无限</td></tr>
+      <tr><td colspan="3" class="q-note">⚠️ 失败请求也扣额度；:free 模型高峰期可能被上游限流</td></tr>
+    </table>
+  </div>
+  <div class="card-code">
+    <div class="code-tabs">
+      <button class="code-tab active" onclick="showTab(this,'or-py')">Python</button>
+    </div>
+    <button class="copy-btn" onclick="copyCode(this)">copy</button>
+    <div class="code-panel active" id="or-py"><pre><span class="kw">from</span> openai <span class="kw">import</span> OpenAI
+client = OpenAI(
+    api_key=<span class="str">"sk-or-你的Key"</span>,
+    base_url=<span class="str">"https://openrouter.ai/api/v1"</span>,
+)
+resp = client.chat.completions.<span class="fn">create</span>(
+    model=<span class="str">"meta-llama/llama-3.3-70b-instruct:free"</span>,
+    messages=[{<span class="str">"role"</span>:<span class="str">"user"</span>,<span class="str">"content"</span>:<span class="str">"Hello!"</span>}],
+)
+<span class="cmt"># 其他免费: deepseek/deepseek-r1:free</span>
+<span class="cmt">#          qwen/qwen3-coder-480b-a35b-instruct:free</span>
+<span class="cmt">#          google/gemma-3-27b-it:free</span>
+<span class="fn">print</span>(resp.choices[<span class="num">0</span>].message.content)</pre></div>
+  </div>
+  <div class="card-foot">
+    <a class="foot-link" href="https://openrouter.ai/keys" target="_blank">获取 API Key</a>
+    <span class="foot-note">注册 → Keys → Create Key（无需信用卡）</span>
+  </div>
+</div>
+
+<!-- NVIDIA NIM -->
+<div class="card" data-tags="intl free nocard">
+  <div class="card-head">
+    <div class="card-icon">🟢</div>
+    <div class="card-title-group">
+      <div class="card-name">NVIDIA NIM</div>
+      <div class="card-url">build.nvidia.com</div>
+      <div class="card-badges">
+        <span class="badge b-vpn">需翻墙</span>
+        <span class="badge b-free">1000积分赠送</span>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="card-desc">注册赠 1000 积分，91+ 款免费模型端点，含 DeepSeek R1/V3、Llama-4、Mistral Large，积分用完后按量付费。</div>
+    <table class="quota-table">
+      <tr><th>项目</th><th>额度 / 限制</th></tr>
+      <tr><td>注册赠积分</td><td class="q-good">1000 积分（约 1000 次中等请求）</td></tr>
+      <tr><td>免费端点数量</td><td class="q-good">91+ 款模型</td></tr>
+      <tr><td>免费 RPM</td><td>约 40 RPM（因模型而异）</td></tr>
+      <tr><td>API 格式</td><td>OpenAI 兼容</td></tr>
+      <tr><td>信用卡</td><td class="q-good">注册不需要（积分用完才需要）</td></tr>
+    </table>
+  </div>
+  <div class="card-code">
+    <div class="code-tabs">
+      <button class="code-tab active" onclick="showTab(this,'nv-py')">Python</button>
+    </div>
+    <button class="copy-btn" onclick="copyCode(this)">copy</button>
+    <div class="code-panel active" id="nv-py"><pre><span class="kw">from</span> openai <span class="kw">import</span> OpenAI
+client = OpenAI(
+    api_key=<span class="str">"nvapi-你的Key"</span>,
+    base_url=<span class="str">"https://integrate.api.nvidia.com/v1"</span>,
+)
+resp = client.chat.completions.<span class="fn">create</span>(
+    model=<span class="str">"meta/llama-3.3-70b-instruct"</span>,
+    messages=[{<span class="str">"role"</span>:<span class="str">"user"</span>,<span class="str">"content"</span>:<span class="str">"Hello!"</span>}],
+)
+<span class="fn">print</span>(resp.choices[<span class="num">0</span>].message.content)</pre></div>
+  </div>
+  <div class="card-foot">
+    <a class="foot-link" href="https://build.nvidia.com" target="_blank">获取 API Key</a>
+    <span class="foot-note">注册 → 任意模型页 → Get API Key</span>
+  </div>
+</div>
+
+<!-- SambaNova -->
+<div class="card" data-tags="intl free nocard">
+  <div class="card-head">
+    <div class="card-icon">🦄</div>
+    <div class="card-title-group">
+      <div class="card-name">SambaNova Cloud</div>
+      <div class="card-url">cloud.sambanova.ai</div>
+      <div class="card-badges">
+        <span class="badge b-vpn">需翻墙</span>
+        <span class="badge b-free">$5 赠金（30天）</span>
+        <span class="badge b-fast">⚡ RDU 极速</span>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="card-desc">RDU 芯片，注册赠 $5（30 天有效）。⚠️ MiniMax-M2.7 需付费（报 402 错误），只用免费模型即可。</div>
+    <table class="quota-table">
+      <tr><th>项目</th><th>额度 / 限制</th></tr>
+      <tr><td>赠金</td><td class="q-warn">$5（30天内用完，不续期）</td></tr>
+      <tr><td>✅ 免费模型</td><td class="q-good">Llama-3.3-70B / DeepSeek-V3.1 / Llama-4-Maverick</td></tr>
+      <tr><td>❌ 付费模型</td><td class="q-bad">MiniMax-M2.7（用即报 402）</td></tr>
+      <tr><td>API 格式</td><td>OpenAI 兼容</td></tr>
+      <tr><td>信用卡</td><td class="q-good">注册不需要（$5 用完才需要）</td></tr>
+    </table>
+  </div>
+  <div class="card-code">
+    <div class="code-tabs">
+      <button class="code-tab active" onclick="showTab(this,'sn-py')">Python</button>
+    </div>
+    <button class="copy-btn" onclick="copyCode(this)">copy</button>
+    <div class="code-panel active" id="sn-py"><pre><span class="kw">from</span> openai <span class="kw">import</span> OpenAI
+client = OpenAI(
+    api_key=<span class="str">"你的 SambaNova Key"</span>,
+    base_url=<span class="str">"https://api.sambanova.ai/v1"</span>,
+)
+resp = client.chat.completions.<span class="fn">create</span>(
+    model=<span class="str">"Meta-Llama-3.3-70B-Instruct"</span>,<span class="cmt"> # ✅ 免费</span>
+    <span class="cmt"># ❌ 别用 MiniMax-M2.7 → 402 Error</span>
+    messages=[{<span class="str">"role"</span>:<span class="str">"user"</span>,<span class="str">"content"</span>:<span class="str">"Hello!"</span>}],
+)
+<span class="fn">print</span>(resp.choices[<span class="num">0</span>].message.content)</pre></div>
+  </div>
+  <div class="card-foot">
+    <a class="foot-link" href="https://cloud.sambanova.ai" target="_blank">获取 API Key</a>
+    <span class="foot-note">注册 → API Keys → Generate Key</span>
+  </div>
+</div>
+
+<!-- LLM7 -->
+<div class="card" data-tags="intl free nocard">
+  <div class="card-head">
+    <div class="card-icon">7️⃣</div>
+    <div class="card-title-group">
+      <div class="card-name">LLM7.io</div>
+      <div class="card-url">api.llm7.io/v1</div>
+      <div class="card-badges">
+        <span class="badge b-vpn">需翻墙</span>
+        <span class="badge b-free">30~120 RPM，无需信用卡</span>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="card-desc">英国小众平台，匿名 30 RPM 可用，注册后提升至 120 RPM，支持 DeepSeek R1、Qwen 等 27+ 模型，适合高频轻量调用。</div>
+    <table class="quota-table">
+      <tr><th>项目</th><th>额度 / 限制</th></tr>
+      <tr><td>匿名速率</td><td class="q-warn">30 RPM（无需注册，无需 Key）</td></tr>
+      <tr><td>注册后速率</td><td class="q-good">120 RPM（注册领免费 token 后）</td></tr>
+      <tr><td>可用模型</td><td>27+ 开源模型</td></tr>
+      <tr><td>API 格式</td><td>OpenAI 兼容</td></tr>
+      <tr><td>信用卡</td><td class="q-good">完全不需要</td></tr>
+    </table>
+  </div>
+  <div class="card-code">
+    <div class="code-tabs">
+      <button class="code-tab active" onclick="showTab(this,'llm7-py')">Python</button>
+    </div>
+    <button class="copy-btn" onclick="copyCode(this)">copy</button>
+    <div class="code-panel active" id="llm7-py"><pre><span class="kw">from</span> openai <span class="kw">import</span> OpenAI
+client = OpenAI(
+    api_key=<span class="str">"token.llm7.io 免费领取"</span>,
+    base_url=<span class="str">"https://api.llm7.io/v1"</span>,
+)
+resp = client.chat.completions.<span class="fn">create</span>(
+    model=<span class="str">"deepseek-r1"</span>,
+    messages=[{<span class="str">"role"</span>:<span class="str">"user"</span>,<span class="str">"content"</span>:<span class="str">"Hello!"</span>}],
+)
+<span class="fn">print</span>(resp.choices[<span class="num">0</span>].message.content)</pre></div>
+  </div>
+  <div class="card-foot">
+    <a class="foot-link" href="https://token.llm7.io" target="_blank">获取 Token</a>
+    <span class="foot-note">匿名可用 30 RPM，注册后提升至 120 RPM</span>
+  </div>
+</div>
+
+<!-- Cloudflare -->
+<div class="card" data-tags="intl free nocard image">
+  <div class="card-head">
+    <div class="card-icon">☁️</div>
+    <div class="card-title-group">
+      <div class="card-name">Cloudflare Workers AI</div>
+      <div class="card-url">developers.cloudflare.com/workers-ai</div>
+      <div class="card-badges">
+        <span class="badge b-vpn">需翻墙</span>
+        <span class="badge b-free">1万神经元/天（永久）</span>
+        <span class="badge b-img">FLUX 图像</span>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="card-desc">永久免费每天 1 万神经元。⚠️ 图像消耗极快（1024² FLUX ≈ 3000-5000 神经元），只够生成约 2-5 张；用小文字模型则等效约 407 万 token/天。</div>
+    <table class="quota-table">
+      <tr><th>用途</th><th>每天 1万神经元 = 约多少</th></tr>
+      <tr><td>FLUX 图像 1024×1024</td><td class="q-bad">约 2-5 张（消耗极快）</td></tr>
+      <tr><td>Llama-3.2-1B 文字</td><td class="q-good">约 407万 token 输入</td></tr>
+      <tr><td>Llama-3.3-70B 文字</td><td class="q-warn">约 37万 token 输入</td></tr>
+      <tr><td>DeepSeek-R1-32B 文字</td><td class="q-bad">约 22万 token 输入</td></tr>
+      <tr><td colspan="2" class="q-note">⚠️ 生图请用硅基流动/Together；小模型聊天很划算</td></tr>
+    </table>
+  </div>
+  <div class="card-code">
+    <div class="code-tabs">
+      <button class="code-tab active" onclick="showTab(this,'cf-img')">图像生成</button>
+      <button class="code-tab" onclick="showTab(this,'cf-text')">文字对话</button>
+    </div>
+    <button class="copy-btn" onclick="copyCode(this)">copy</button>
+    <div class="code-panel active" id="cf-img"><pre><span class="kw">import</span> requests
+acct = <span class="str">"你的 Cloudflare Account ID"</span>
+tok  = <span class="str">"你的 Cloudflare API Token"</span>
+resp = requests.<span class="fn">post</span>(
+    <span class="str">f"https://api.cloudflare.com/client/v4/accounts/{acct}"</span>
+    <span class="str">"/ai/run/@cf/black-forest-labs/flux-1-schnell"</span>,
+    headers={<span class="str">"Authorization"</span>:<span class="str">f"Bearer {tok}"</span>},
+    json={<span class="str">"prompt"</span>:<span class="str">"a cat on the moon"</span>},
+)
+<span class="kw">if</span> resp.status_code==<span class="num">200</span>:
+    <span class="kw">with</span> <span class="fn">open</span>(<span class="str">"out.png"</span>,<span class="str">"wb"</span>) <span class="kw">as</span> f: f.<span class="fn">write</span>(resp.content)
+<span class="kw">else</span>: <span class="fn">print</span>(resp.json())<span class="cmt"> # 429=神经元用完</span></pre></div>
+    <div class="code-panel" id="cf-text"><pre><span class="kw">import</span> requests
+acct = <span class="str">"你的 Cloudflare Account ID"</span>
+tok  = <span class="str">"你的 Cloudflare API Token"</span>
+resp = requests.<span class="fn">post</span>(
+    <span class="str">f"https://api.cloudflare.com/client/v4/accounts/{acct}"</span>
+    <span class="str">"/ai/run/@cf/meta/llama-3.2-1b-instruct"</span>,
+    headers={<span class="str">"Authorization"</span>:<span class="str">f"Bearer {tok}"</span>},
+    json={<span class="str">"messages"</span>:[{<span class="str">"role"</span>:<span class="str">"user"</span>,<span class="str">"content"</span>:<span class="str">"Hello!"</span>}]},
+)
+<span class="fn">print</span>(resp.json()[<span class="str">"result"</span>][<span class="str">"response"</span>])</pre></div>
+  </div>
+  <div class="card-foot">
+    <a class="foot-link" href="https://dash.cloudflare.com" target="_blank">获取 Token</a>
+    <span class="foot-note">控制台 → Workers AI → API Token</span>
+  </div>
+</div>
+
+</div><!-- /grid intl -->
+
+<!-- ════════════════ 图像生成专用 ════════════════ -->
+<div class="section-header">
+  <h2>🖼️ 图像生成专用平台（性价比排名）</h2>
+  <div class="section-line"></div>
+  <div class="section-count">3 个</div>
+</div>
+<div class="grid">
+
+<!-- Together.ai -->
+<div class="card" data-tags="intl image free nocard">
+  <div class="card-head">
+    <div class="card-icon">🤝</div>
+    <div class="card-title-group">
+      <div class="card-name">Together.ai 🥇 综合推荐</div>
+      <div class="card-url">api.together.ai</div>
+      <div class="card-badges">
+        <span class="badge b-vpn">需翻墙</span>
+        <span class="badge b-free">3个月免费</span>
+        <span class="badge b-img">FLUX + 文字</span>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="card-desc">FLUX.1-schnell-Free 前 3 个月完全免费，2-4s/张，200+ 模型文字 + 图像双支持，OpenAI 格式，无需信用卡，是翻墙用户生图首选。</div>
+    <table class="quota-table">
+      <tr><th>项目</th><th>额度 / 限制</th></tr>
+      <tr><td>免费期限</td><td class="q-good">3 个月（注册后计时）</td></tr>
+      <tr><td>FLUX 生成延迟</td><td class="q-good">2-4s/张</td></tr>
+      <tr><td>图像免费模型</td><td class="q-good">FLUX.1-schnell-Free</td></tr>
+      <tr><td>文字免费模型</td><td class="q-good">Llama-3.3-70B-Turbo-Free</td></tr>
+      <tr><td>信用卡</td><td class="q-good">不需要（3个月内）</td></tr>
+    </table>
+  </div>
+  <div class="card-code">
+    <div class="code-tabs">
+      <button class="code-tab active" onclick="showTab(this,'tog-img')">图像生成</button>
+      <button class="code-tab" onclick="showTab(this,'tog-text')">文字对话</button>
+    </div>
+    <button class="copy-btn" onclick="copyCode(this)">copy</button>
+    <div class="code-panel active" id="tog-img"><pre><span class="kw">import</span> requests
+resp = requests.<span class="fn">post</span>(
+    <span class="str">"https://api.together.xyz/v1/images/generations"</span>,
+    headers={<span class="str">"Authorization"</span>:<span class="str">"Bearer 你的Key"</span>},
+    json={<span class="str">"model"</span>:<span class="str">"black-forest-labs/FLUX.1-schnell-Free"</span>,
+          <span class="str">"prompt"</span>:<span class="str">"a cat on the moon"</span>,
+          <span class="str">"n"</span>:<span class="num">1</span>,<span class="str">"width"</span>:<span class="num">1024</span>,<span class="str">"height"</span>:<span class="num">1024</span>},
+)
+<span class="fn">print</span>(resp.json()[<span class="str">"data"</span>][<span class="num">0</span>][<span class="str">"url"</span>])</pre></div>
+    <div class="code-panel" id="tog-text"><pre><span class="kw">from</span> openai <span class="kw">import</span> OpenAI
+client = OpenAI(
+    api_key=<span class="str">"你的 Together API Key"</span>,
+    base_url=<span class="str">"https://api.together.xyz/v1"</span>,
+)
+resp = client.chat.completions.<span class="fn">create</span>(
+    model=<span class="str">"meta-llama/Llama-3.3-70B-Instruct-Turbo-Free"</span>,
+    messages=[{<span class="str">"role"</span>:<span class="str">"user"</span>,<span class="str">"content"</span>:<span class="str">"Hello!"</span>}],
+)
+<span class="fn">print</span>(resp.choices[<span class="num">0</span>].message.content)</pre></div>
+  </div>
+  <div class="card-foot">
+    <a class="foot-link" href="https://api.together.ai" target="_blank">获取 API Key</a>
+    <span class="foot-note">注册 → Settings → API Keys</span>
+  </div>
+</div>
+
+<!-- fal.ai -->
+<div class="card" data-tags="intl image">
+  <div class="card-head">
+    <div class="card-icon">⚡</div>
+    <div class="card-title-group">
+      <div class="card-name">fal.ai 🥈 低延迟专家</div>
+      <div class="card-url">fal.ai</div>
+      <div class="card-badges">
+        <span class="badge b-vpn">需翻墙</span>
+        <span class="badge b-paid">注册少量额度</span>
+        <span class="badge b-img">1000+ 模型</span>
+        <span class="badge b-fast">⚡ &lt;3s/张</span>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="card-desc">专为低延迟设计，FLUX 系列平均 &lt;3s，零冷启动，1000+ 模型，付费 $0.003/张，适合实时生图应用。</div>
+    <table class="quota-table">
+      <tr><th>项目</th><th>额度 / 限制</th></tr>
+      <tr><td>注册赠金</td><td class="q-warn">少量试用额度</td></tr>
+      <tr><td>FLUX.1-schnell 延迟</td><td class="q-good">&lt;3s/张（零冷启动）</td></tr>
+      <tr><td>付费单价</td><td>$0.003/张</td></tr>
+      <tr><td>模型数量</td><td class="q-good">1000+</td></tr>
+      <tr><td>信用卡</td><td class="q-warn">付费时需要</td></tr>
+    </table>
+  </div>
+  <div class="card-code">
+    <div class="code-tabs">
+      <button class="code-tab active" onclick="showTab(this,'fal-py')">Python</button>
+    </div>
+    <button class="copy-btn" onclick="copyCode(this)">copy</button>
+    <div class="code-panel active" id="fal-py"><pre><span class="cmt"># pip install fal-client</span>
+<span class="kw">import</span> fal_client <span class="kw">as</span> fal, os
+os.environ[<span class="str">"FAL_KEY"</span>] = <span class="str">"你的 fal.ai API Key"</span>
+result = fal.<span class="fn">subscribe</span>(
+    <span class="str">"fal-ai/flux/schnell"</span>,
+    arguments={<span class="str">"prompt"</span>:<span class="str">"a cat on the moon"</span>},
+)
+<span class="fn">print</span>(result[<span class="str">"images"</span>][<span class="num">0</span>][<span class="str">"url"</span>])</pre></div>
+  </div>
+  <div class="card-foot">
+    <a class="foot-link" href="https://fal.ai/dashboard/keys" target="_blank">获取 API Key</a>
+    <span class="foot-note">Dashboard → Keys → Add Key</span>
+  </div>
+</div>
+
+<!-- Runware -->
+<div class="card" data-tags="intl image">
+  <div class="card-head">
+    <div class="card-icon">🚀</div>
+    <div class="card-title-group">
+      <div class="card-name">Runware 🥉 亚秒极速</div>
+      <div class="card-url">runware.ai</div>
+      <div class="card-badges">
+        <span class="badge b-vpn">需翻墙</span>
+        <span class="badge b-paid">$0.0006/张（全网最低）</span>
+        <span class="badge b-fast">⚡ &lt;1s</span>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="card-desc">自研 Sonic 引擎亚秒级生图，$0.0006/张全网最低，40万+ CivitAI 社区模型，2025 年获 5000 万美元融资，稳定性有保障。</div>
+    <table class="quota-table">
+      <tr><th>项目</th><th>额度 / 限制</th></tr>
+      <tr><td>生成延迟</td><td class="q-good">&lt;1s（Sonic 引擎）</td></tr>
+      <tr><td>最低单价</td><td class="q-good">$0.0006/张（全网最低）</td></tr>
+      <tr><td>社区模型</td><td class="q-good">40万+ CivitAI 模型</td></tr>
+      <tr><td>注册赠金</td><td class="q-warn">少量试用额度</td></tr>
+      <tr><td>信用卡</td><td class="q-warn">付费时需要</td></tr>
+    </table>
+  </div>
+  <div class="card-code">
+    <div class="code-tabs">
+      <button class="code-tab active" onclick="showTab(this,'rw-py')">Python</button>
+    </div>
+    <button class="copy-btn" onclick="copyCode(this)">copy</button>
+    <div class="code-panel active" id="rw-py"><pre><span class="cmt"># pip install runware</span>
+<span class="kw">import</span> asyncio
+<span class="kw">from</span> runware <span class="kw">import</span> Runware, IImageInference
+<span class="kw">async def</span> <span class="fn">main</span>():
+    client = <span class="fn">Runware</span>(api_key=<span class="str">"你的 Runware Key"</span>)
+    <span class="kw">await</span> client.<span class="fn">connect</span>()
+    images = <span class="kw">await</span> client.<span class="fn">imageInference</span>(
+        <span class="fn">IImageInference</span>(
+            positivePrompt=<span class="str">"a cat on the moon"</span>,
+            model=<span class="str">"runware:100@1"</span>,
+            numberResults=<span class="num">1</span>,
+        )
+    )
+    <span class="fn">print</span>(images[<span class="num">0</span>].imageURL)
+asyncio.<span class="fn">run</span>(<span class="fn">main</span>())</pre></div>
+  </div>
+  <div class="card-foot">
+    <a class="foot-link" href="https://runware.ai" target="_blank">获取 API Key</a>
+    <span class="foot-note">Dashboard → API Keys → Create</span>
+  </div>
+</div>
+
+</div><!-- /grid image -->
+
+<!-- ════════════════ 参考资源 ════════════════ -->
+<div class="section-header">
+  <h2>📚 参考资源 &amp; 实时跟踪</h2>
+  <div class="section-line"></div>
+</div>
+<div class="grid">
+  <div class="card" style="border-color:rgba(78,255,176,.18)">
+    <div class="card-body" style="padding:18px">
+      <div style="font-size:13px;color:var(--text);font-weight:500;margin-bottom:8px">🌟 awesome-free-llm-apis（GitHub 实时跟踪）</div>
+      <div class="card-desc">持续更新全球所有免费 LLM API 的实时限额和模型列表。</div>
+      <div style="margin-top:12px"><a class="foot-link" href="https://github.com/amardeeplakshkar/awesome-free-llm-apis" target="_blank">github.com/amardeeplakshkar/awesome-free-llm-apis</a></div>
+    </div>
+  </div>
+  <div class="card" style="border-color:rgba(56,217,245,.18)">
+    <div class="card-body" style="padding:18px">
+      <div style="font-size:13px;color:var(--text);font-weight:500;margin-bottom:8px">📊 TokenMix.ai（精确限额数据库）</div>
+      <div class="card-desc">300+ 平台 RPM/TPM/RPD 精确数据，每月更新验证，本页大量限额数据来源于此。</div>
+      <div style="margin-top:12px"><a class="foot-link" href="https://tokenmix.ai" target="_blank">tokenmix.ai</a></div>
+    </div>
+  </div>
+  <div class="card" style="border-color:rgba(167,139,250,.18)">
+    <div class="card-body" style="padding:18px">
+      <div style="font-size:13px;color:var(--text);font-weight:500;margin-bottom:8px">🔍 cheahjs/free-llm-api-resources</div>
+      <div class="card-desc">GitHub 上最全的免费 API 跟踪仓库，含小众实验性平台。</div>
+      <div style="margin-top:12px"><a class="foot-link" href="https://github.com/cheahjs/free-llm-api-resources" target="_blank">github.com/cheahjs/free-llm-api-resources</a></div>
+    </div>
+  </div>
+</div>
+
+</main>
+
+<footer>
+  <div class="footer-note">
+    免费 AI API 资源目录 · 最后更新：2026-06-01<br>
+    数据来源：官方文档 + TokenMix.ai 实测（2026年4-5月验证）。部分限额随时变动，以官方文档为准。
+  </div>
+  <a class="footer-gh" href="https://github.com/amardeeplakshkar/awesome-free-llm-apis" target="_blank">持续更新参考 →</a>
+</footer>
+
+<script>
+function filter(tag,btn){
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.card[data-tags]').forEach(card=>{
+    card.classList.toggle('hidden',tag!=='all'&&!card.dataset.tags.includes(tag));
+  });
+  updateCount();
+}
+function doSearch(q){
+  const kw=q.trim().toLowerCase();
+  document.querySelectorAll('.card[data-tags]').forEach(card=>{
+    card.classList.toggle('hidden',!!(kw&&!card.innerText.toLowerCase().includes(kw)));
+  });
+  updateCount();
+}
+function updateCount(){
+  document.getElementById('visible-count').textContent=
+    document.querySelectorAll('.card[data-tags]:not(.hidden)').length;
+}
+function showTab(btn,id){
+  const cc=btn.closest('.card-code');
+  cc.querySelectorAll('.code-tab').forEach(t=>t.classList.remove('active'));
+  cc.querySelectorAll('.code-panel').forEach(p=>p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById(id).classList.add('active');
+}
+function copyCode(btn){
+  const p=btn.closest('.card-code').querySelector('.code-panel.active pre');
+  if(!p)return;
+  navigator.clipboard.writeText(p.innerText).then(()=>{
+    btn.textContent='copied!';btn.style.color='var(--accent)';
+    setTimeout(()=>{btn.textContent='copy';btn.style.color='';},2000);
+  });
+}
+updateCount();
+</script>
+</body>
+</html>
