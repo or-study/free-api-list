@@ -4,7 +4,7 @@
 
 <div align="center">
 
-[**立即体验 →**](https://your-github-username.github.io/free-api-list) | 
+[**立即体验 →**](https://or-study.github.io/free-api-list) | 
 [**GitHub 仓库**](https://github.com/or-study/free-api-list) | 
 [**加入交流**](#)
 
@@ -32,7 +32,7 @@
 
 ### 访问方式
 
-**GitHub Pages**（推荐）：[https://your-github-username.github.io/free-api-list](https://your-github-username.github.io/free-api-list)
+**GitHub Pages**（推荐）：[https://or-study.github.io/free-api-list](https://or-study.github.io/free-api-list)
 
 **本地运行**：
 ```bash
@@ -72,18 +72,10 @@ free-api-list/
 ├── LICENSE                             # 许可证
 ├── package.json                        # 项目配置
 ├── .github/
-│   ├── workflows/
-│   │   ├── deploy.yml                  # GitHub Pages 自动部署
-│   │   └── auto-update.yml             # API 信息自动更新
-│   └── ISSUE_TEMPLATE/
-│       ├── bug_report.md
-│       └── feature_request.md
-├── scripts/
-│   ├── scrape-apis.js                  # API 信息爬取工具
-│   └── validate-json.js                # 数据验证脚本
-└── docs/
-    ├── usage.md                        # 使用指南
-    └── monetization.md                 # 变现方案
+│   └── workflows/
+│       └── deploy.yml                  # GitHub Pages 自动部署
+└── scripts/
+    └── validate-json.js                # 项目验证脚本
 ```
 
 ## 🤝 贡献指南
@@ -96,18 +88,6 @@ free-api-list/
 - 🐛 修复 Bug
 - 📚 完善文档
 - 🎨 改进 UI/UX
-
-## 💡 变现模式设计
-
-为了帮助项目长期可持续发展，我们设计了完整的商业变现方案，详情见 [docs/monetization.md](docs/monetization.md)。
-
-**主要方向**：
-1. 💰 **付费会员计划**：高级工具、专属 API 代理
-2. 🤝 **企业服务**：API 聚合代理、私有化部署
-3. 📦 **SDK / 脚手架**：开箱即用的开发工具包
-4. 📊 **API 监控与优化**：性能监控、智能路由服务
-5. 🎓 **培训与咨询**：AI 工程化课程、企业咨询
-6. 🔗 **联盟佣金**：与云平台的分成合作
 
 ## 🔒 免责声明
 
