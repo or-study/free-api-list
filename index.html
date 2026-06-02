@@ -7,95 +7,113 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Noto+Serif+SC:wght@300;400;700&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#0a0c10;--surface:#111318;--surface2:#181c23;--border:#1e2330;--border2:#2a3045;--text:#e8eaf0;--text2:#8a90a8;--text3:#4a5068;--accent:#4fffb0;--accent2:#38d9f5;--accent3:#ff6b6b;--accent4:#ffc94a;--accent5:#a78bfa;--mono:'JetBrains Mono',monospace;--serif:'Noto Serif SC',serif}
+:root{--bg:#0a0c10;--surface:#111318;--surface2:#181c23;--border:#1e2330;--border2:#2a3045;--text:#e8eaf0;--text2:#8a90a8;--text3:#4a5068;--accent:#4fffb0;--accent2:#38d9f5;--accent3:#ff6b6b;--accent4:#ffc94a;--accent5:#a78bfa;--mono:'JetBrains Mono',monospace;--serif:'Noto Serif SC',serif;--radius:10px;--shadow:0 4px 24px rgba(0,0,0,.3)}
 *{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--text);font-family:var(--mono);font-size:14px;line-height:1.6;min-height:100vh;overflow-x:hidden}
-body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(78,255,176,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(78,255,176,.025) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;z-index:0}
-header{position:relative;z-index:10;padding:4rem 2rem 2rem;max-width:1300px;margin:0 auto;border-bottom:1px solid var(--border)}
-.header-tag{font-size:11px;color:var(--accent);letter-spacing:.15em;text-transform:uppercase;margin-bottom:1rem;opacity:.8}
-header h1{font-family:var(--serif);font-size:clamp(2rem,5vw,3.2rem);font-weight:700;color:var(--text);line-height:1.1;letter-spacing:-.02em}
-header h1 span{color:var(--accent)}
-.header-sub{margin-top:.75rem;color:var(--text2);font-size:13px;max-width:640px;line-height:1.7}
-.header-meta{display:flex;gap:1rem;margin-top:1.5rem;flex-wrap:wrap}
-.meta-pill{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--text2);background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:4px 12px}
+body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(78,255,176,.02) 1px,transparent 1px),linear-gradient(90deg,rgba(78,255,176,.02) 1px,transparent 1px);background-size:48px 48px;pointer-events:none;z-index:0}
+body::after{content:'';position:fixed;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(ellipse at 20% 20%,rgba(78,255,176,.04) 0%,transparent 50%),radial-gradient(ellipse at 80% 80%,rgba(56,217,245,.03) 0%,transparent 50%);pointer-events:none;z-index:0}
+header{position:relative;z-index:10;padding:5rem 2rem 3rem;max-width:1300px;margin:0 auto;border-bottom:1px solid var(--border)}
+.header-tag{font-size:11px;color:var(--accent);letter-spacing:.15em;text-transform:uppercase;margin-bottom:1.2rem;opacity:.8;display:inline-flex;align-items:center;gap:8px}
+.header-tag::before{content:'';display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 8px var(--accent)}
+header h1{font-family:var(--serif);font-size:clamp(2.2rem,5.5vw,3.5rem);font-weight:700;color:var(--text);line-height:1.15;letter-spacing:-.02em}
+header h1 span{background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.header-sub{margin-top:1rem;color:var(--text2);font-size:13px;max-width:660px;line-height:1.8}
+.header-meta{display:flex;gap:10px;margin-top:1.8rem;flex-wrap:wrap}
+.meta-pill{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--text2);background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:5px 14px;transition:border-color .2s}
+.meta-pill:hover{border-color:var(--border2)}
 .meta-pill .dot{width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 6px var(--accent);animation:pulse 2s infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
-.filter-bar{position:sticky;top:0;z-index:20;background:rgba(10,12,16,.95);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:.75rem 2rem}
+.filter-bar{position:sticky;top:0;z-index:20;background:rgba(10,12,16,.92);backdrop-filter:blur(20px) saturate(1.2);border-bottom:1px solid var(--border);padding:.75rem 2rem}
 .filter-inner{max-width:1300px;margin:0 auto;display:flex;gap:8px;flex-wrap:wrap;align-items:center}
 .filter-label{font-size:11px;color:var(--text3);letter-spacing:.1em;text-transform:uppercase;margin-right:4px}
-.tab-btn{font-family:var(--mono);font-size:12px;padding:4px 14px;border-radius:4px;border:1px solid var(--border2);background:transparent;color:var(--text2);cursor:pointer;transition:all .15s}
-.tab-btn:hover{border-color:var(--accent);color:var(--accent)}
-.tab-btn.active{background:var(--accent);color:#000;border-color:var(--accent);font-weight:700}
-.search-box{margin-left:auto;display:flex;align-items:center;gap:8px;background:var(--surface);border:1px solid var(--border2);border-radius:4px;padding:4px 10px}
-.search-box input{font-family:var(--mono);font-size:12px;background:none;border:none;outline:none;color:var(--text);width:200px}
+.tab-btn{font-family:var(--mono);font-size:12px;padding:5px 16px;border-radius:6px;border:1px solid var(--border2);background:transparent;color:var(--text2);cursor:pointer;transition:all .2s}
+.tab-btn:hover{border-color:var(--accent);color:var(--accent);background:rgba(78,255,176,.06)}
+.tab-btn.active{background:var(--accent);color:#000;border-color:var(--accent);font-weight:700;box-shadow:0 0 12px rgba(78,255,176,.25)}
+.search-box{margin-left:auto;display:flex;align-items:center;gap:8px;background:var(--surface);border:1px solid var(--border2);border-radius:6px;padding:5px 12px;transition:border-color .2s}
+.search-box:focus-within{border-color:var(--accent2);box-shadow:0 0 8px rgba(56,217,245,.15)}
+.search-box input{font-family:var(--mono);font-size:12px;background:none;border:none;outline:none;color:var(--text);width:220px}
 .search-box input::placeholder{color:var(--text3)}
 main{position:relative;z-index:5;max-width:1300px;margin:0 auto;padding:2rem}
-.stats-bar{display:flex;gap:28px;padding:1.25rem 0;border-bottom:1px solid var(--border);margin-bottom:.5rem;flex-wrap:wrap}
-.stat{display:flex;flex-direction:column;gap:2px}
-.stat-val{font-size:22px;font-weight:700;color:var(--accent);line-height:1}
-.stat-key{font-size:11px;color:var(--text3)}
-.section-header{display:flex;align-items:center;gap:12px;margin:2.5rem 0 1.25rem}
-.section-header h2{font-family:var(--serif);font-size:1.1rem;font-weight:400;color:var(--text2);letter-spacing:.05em;white-space:nowrap}
-.section-line{flex:1;height:1px;background:var(--border)}
-.section-count{font-size:11px;color:var(--text3);background:var(--surface2);border:1px solid var(--border);border-radius:20px;padding:2px 10px;white-space:nowrap}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(350px,1fr));gap:12px}
-.card{background:var(--surface);border:1px solid var(--border);border-radius:8px;overflow:hidden;transition:border-color .2s,transform .2s;display:flex;flex-direction:column}
-.card:hover{border-color:var(--border2);transform:translateY(-2px)}
+.stats-bar{display:flex;gap:32px;padding:1.5rem 0;border-bottom:1px solid var(--border);margin-bottom:.5rem;flex-wrap:wrap}
+.stat{display:flex;flex-direction:column;gap:4px}
+.stat-val{font-size:26px;font-weight:700;color:var(--accent);line-height:1;letter-spacing:-.02em}
+.stat-key{font-size:11px;color:var(--text3);letter-spacing:.02em}
+.section-header{display:flex;align-items:center;gap:14px;margin:3rem 0 1.5rem}
+.section-header h2{font-family:var(--serif);font-size:1.15rem;font-weight:400;color:var(--text2);letter-spacing:.05em;white-space:nowrap}
+.section-line{flex:1;height:1px;background:linear-gradient(90deg,var(--border2),transparent)}
+.section-count{font-size:11px;color:var(--text3);background:var(--surface2);border:1px solid var(--border);border-radius:20px;padding:3px 12px;white-space:nowrap}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(360px,1fr));gap:16px}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:all .25s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;position:relative}
+.card::before{content:'';position:absolute;inset:0;border-radius:var(--radius);opacity:0;transition:opacity .25s;pointer-events:none;z-index:1;background:linear-gradient(135deg,rgba(78,255,176,.03),rgba(56,217,245,.02))}
+.card:hover{border-color:var(--border2);transform:translateY(-3px);box-shadow:var(--shadow)}
+.card:hover::before{opacity:1}
 .card.hidden{display:none}
-.card-head{padding:16px 18px 12px;border-bottom:1px solid var(--border);display:flex;align-items:flex-start;gap:12px}
-.card-icon{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;background:var(--surface2);border:1px solid var(--border2)}
+.card-head{padding:18px 20px 14px;border-bottom:1px solid var(--border);display:flex;align-items:flex-start;gap:14px}
+.card-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;background:var(--surface2);border:1px solid var(--border2);transition:transform .2s}
+.card:hover .card-icon{transform:scale(1.08)}
 .card-title-group{flex:1;min-width:0}
-.card-name{font-size:15px;font-weight:500;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.card-url{font-size:11px;color:var(--text3);margin-top:2px}
-.card-badges{display:flex;gap:4px;flex-wrap:wrap;margin-top:6px}
-.badge{font-size:10px;font-family:var(--mono);padding:2px 7px;border-radius:3px;font-weight:500;letter-spacing:.03em}
-.b-free{background:rgba(78,255,176,.12);color:var(--accent);border:1px solid rgba(78,255,176,.25)}
-.b-cn{background:rgba(255,107,107,.12);color:var(--accent3);border:1px solid rgba(255,107,107,.25)}
-.b-vpn{background:rgba(56,217,245,.12);color:var(--accent2);border:1px solid rgba(56,217,245,.25)}
-.b-img{background:rgba(167,139,250,.12);color:var(--accent5);border:1px solid rgba(167,139,250,.25)}
-.b-paid{background:rgba(255,201,74,.12);color:var(--accent4);border:1px solid rgba(255,201,74,.25)}
-.b-fast{background:rgba(78,255,176,.07);color:#6fffcc;border:1px solid rgba(78,255,176,.12)}
-.card-body{padding:14px 18px;flex:1}
-.card-desc{font-size:12px;color:var(--text2);line-height:1.75}
-.quota-table{width:100%;border-collapse:collapse;margin-top:12px;font-size:11px}
-.quota-table th{text-align:left;padding:5px 8px;background:var(--surface2);color:var(--text3);border-bottom:1px solid var(--border);font-weight:500;letter-spacing:.05em;text-transform:uppercase}
-.quota-table td{padding:5px 8px;border-bottom:1px solid var(--border);color:var(--text);vertical-align:top}
+.card-name{font-size:15px;font-weight:600;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.card-url{font-size:11px;color:var(--text3);margin-top:3px;letter-spacing:.02em}
+.card-badges{display:flex;gap:5px;flex-wrap:wrap;margin-top:8px}
+.badge{font-size:10px;font-family:var(--mono);padding:2px 8px;border-radius:4px;font-weight:500;letter-spacing:.03em;transition:transform .15s}
+.badge:hover{transform:scale(1.05)}
+.b-free{background:rgba(78,255,176,.1);color:var(--accent);border:1px solid rgba(78,255,176,.2)}
+.b-cn{background:rgba(255,107,107,.1);color:var(--accent3);border:1px solid rgba(255,107,107,.2)}
+.b-vpn{background:rgba(56,217,245,.1);color:var(--accent2);border:1px solid rgba(56,217,245,.2)}
+.b-img{background:rgba(167,139,250,.1);color:var(--accent5);border:1px solid rgba(167,139,250,.2)}
+.b-paid{background:rgba(255,201,74,.1);color:var(--accent4);border:1px solid rgba(255,201,74,.2)}
+.b-fast{background:rgba(78,255,176,.06);color:#6fffcc;border:1px solid rgba(78,255,176,.12)}
+.b-new{background:rgba(56,217,245,.1);color:var(--accent2);border:1px solid rgba(56,217,245,.25)}
+.card-body{padding:16px 20px;flex:1}
+.card-desc{font-size:12px;color:var(--text2);line-height:1.8}
+.card-desc code{background:var(--surface2);padding:1px 6px;border-radius:3px;font-size:11px;color:var(--accent2);border:1px solid var(--border)}
+.quota-table{width:100%;border-collapse:collapse;margin-top:14px;font-size:11px}
+.quota-table th{text-align:left;padding:6px 10px;background:var(--surface2);color:var(--text3);border-bottom:1px solid var(--border);font-weight:500;letter-spacing:.05em;text-transform:uppercase;font-size:10px}
+.quota-table td{padding:6px 10px;border-bottom:1px solid var(--border);color:var(--text);vertical-align:top}
 .quota-table tr:last-child td{border-bottom:none}
-.quota-table tr:hover td{background:rgba(255,255,255,.02)}
+.quota-table tr:hover td{background:rgba(255,255,255,.015)}
 .q-good{color:var(--accent)}
 .q-warn{color:var(--accent4)}
 .q-bad{color:var(--accent3)}
 .q-note{color:var(--text3);font-size:10px}
-.card-code{background:#0d1017;border-top:1px solid var(--border);position:relative}
-.code-tabs{display:flex;gap:0;border-bottom:1px solid var(--border);padding:0 18px}
-.code-tab{font-family:var(--mono);font-size:11px;color:var(--text3);padding:6px 12px 5px;cursor:pointer;border-bottom:2px solid transparent;transition:all .15s;background:none;border-top:none;border-left:none;border-right:none}
+.card-code{background:#0c0f15;border-top:1px solid var(--border);position:relative}
+.code-tabs{display:flex;gap:0;border-bottom:1px solid var(--border);padding:0 20px}
+.code-tab{font-family:var(--mono);font-size:11px;color:var(--text3);padding:7px 14px 6px;cursor:pointer;border-bottom:2px solid transparent;transition:all .15s;background:none;border-top:none;border-left:none;border-right:none}
+.code-tab:hover{color:var(--text2)}
 .code-tab.active{color:var(--accent);border-bottom-color:var(--accent)}
-.code-panel{display:none;padding:14px 18px;overflow-x:auto}
+.code-panel{display:none;padding:16px 20px;overflow-x:auto}
 .code-panel.active{display:block}
-pre{font-family:var(--mono);font-size:11px;color:#c8d3f5;white-space:pre;line-height:1.7}
-.kw{color:#c792ea}.str{color:#c3e88d}.cmt{color:#4a5068}.fn{color:var(--accent2)}.num{color:var(--accent4)}
-.copy-btn{position:absolute;top:36px;right:12px;font-family:var(--mono);font-size:10px;color:var(--text3);background:var(--surface2);border:1px solid var(--border);border-radius:4px;padding:3px 8px;cursor:pointer;transition:all .15s}
-.copy-btn:hover{color:var(--accent);border-color:var(--accent)}
-.card-foot{padding:10px 18px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
-.foot-link{font-size:11px;color:var(--accent2);text-decoration:none}
+pre{font-family:var(--mono);font-size:11px;color:#c8d3f5;white-space:pre;line-height:1.75;tab-size:4}
+.kw{color:#c792ea}.str{color:#c3e88d}.cmt{color:#4a5068;font-style:italic}.fn{color:var(--accent2)}.num{color:var(--accent4)}
+.copy-btn{position:absolute;top:38px;right:14px;font-family:var(--mono);font-size:10px;color:var(--text3);background:var(--surface2);border:1px solid var(--border);border-radius:5px;padding:4px 10px;cursor:pointer;transition:all .2s}
+.copy-btn:hover{color:var(--accent);border-color:var(--accent);background:rgba(78,255,176,.08)}
+.card-foot{padding:12px 20px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;background:rgba(0,0,0,.15)}
+.foot-link{font-size:11px;color:var(--accent2);text-decoration:none;transition:color .15s;display:inline-flex;align-items:center;gap:2px}
 .foot-link:hover{color:var(--accent)}
-.foot-link::after{content:' →'}
+.foot-link::after{content:' →';transition:transform .15s;display:inline-block}
+.foot-link:hover::after{transform:translateX(3px)}
 .foot-note{font-size:10px;color:var(--text3)}
-footer{position:relative;z-index:5;max-width:1300px;margin:4rem auto 0;padding:2rem;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
-.footer-note{font-size:12px;color:var(--text3);line-height:1.7}
-.footer-gh{font-size:12px;color:var(--accent2);text-decoration:none}
-@media(max-width:640px){.grid{grid-template-columns:1fr}header{padding:2rem 1rem 1.5rem}main{padding:1rem}.filter-bar{padding:.6rem 1rem}.search-box{display:none}.stats-bar{gap:16px}}
+footer{position:relative;z-index:5;max-width:1300px;margin:4rem auto 0;padding:2.5rem 2rem;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+.footer-note{font-size:12px;color:var(--text3);line-height:1.8}
+.footer-gh{font-size:12px;color:var(--accent2);text-decoration:none;transition:color .15s}
+.footer-gh:hover{color:var(--accent)}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.card{animation:fadeInUp .4s ease both}
+.grid .card:nth-child(1){animation-delay:.02s}.grid .card:nth-child(2){animation-delay:.04s}.grid .card:nth-child(3){animation-delay:.06s}.grid .card:nth-child(4){animation-delay:.08s}.grid .card:nth-child(5){animation-delay:.1s}.grid .card:nth-child(6){animation-delay:.12s}.grid .card:nth-child(7){animation-delay:.14s}.grid .card:nth-child(8){animation-delay:.16s}.grid .card:nth-child(9){animation-delay:.18s}.grid .card:nth-child(10){animation-delay:.2s}.grid .card:nth-child(11){animation-delay:.22s}.grid .card:nth-child(12){animation-delay:.24s}
+@media(max-width:768px){.grid{grid-template-columns:1fr}header{padding:3rem 1.5rem 2rem}main{padding:1.5rem}.filter-bar{padding:.6rem 1rem}.search-box{width:100%;margin-left:0;margin-top:4px}.search-box input{width:100%}.stats-bar{gap:16px}.header-meta{gap:8px}}
+@media(max-width:480px){header{padding:2rem 1rem 1.5rem}main{padding:1rem}.filter-bar{padding:.5rem .75rem}.meta-pill{font-size:10px;padding:3px 10px}}
 </style>
 </head>
 <body>
 <header>
-  <div class="header-tag">// Free AI API Directory · Updated 2026-06-01 · Verified against official docs &amp; TokenMix.ai</div>
+  <div class="header-tag">Free AI API Directory · Updated 2026-06-02 · Verified against official docs &amp; TokenMix.ai</div>
   <h1>免费 AI API<br><span>资源目录 2026</span></h1>
-  <p class="header-sub">汇集全球 23 个可免费调用的大模型 API 平台，包含精确的 RPM / TPM / RPD / 每日 token 限额，均来自官方文档或 2026 年 4-5 月实测数据。</p>
+  <p class="header-sub">汇集全球 30 个可免费调用的大模型 API 平台，包含精确的 RPM / TPM / RPD / 每日 token 限额，均来自官方文档或 2026 年 4-5 月实测数据。</p>
   <div class="header-meta">
     <div class="meta-pill"><span class="dot"></span>数据实时更新</div>
-    <div class="meta-pill">🇨🇳 12 个国内直连平台</div>
-    <div class="meta-pill">🌐 8 个国际平台</div>
+    <div class="meta-pill">🇨🇳 14 个国内直连平台</div>
+    <div class="meta-pill">🌐 12 个国际平台</div>
     <div class="meta-pill">🖼️ 3 个图像生成专用</div>
     <div class="meta-pill">📊 含精确限额 RPM/TPM/RPD</div>
   </div>
@@ -118,17 +136,37 @@ footer{position:relative;z-index:5;max-width:1300px;margin:4rem auto 0;padding:2
 
 <main>
 <div class="stats-bar">
-  <div class="stat"><div class="stat-val" id="visible-count">23</div><div class="stat-key">当前显示平台数</div></div>
-  <div class="stat"><div class="stat-val">12</div><div class="stat-key">国内直连平台</div></div>
+  <div class="stat"><div class="stat-val" id="visible-count">30</div><div class="stat-key">当前显示平台数</div></div>
+  <div class="stat"><div class="stat-val">14</div><div class="stat-key">国内直连平台</div></div>
   <div class="stat"><div class="stat-val">100万</div><div class="stat-key">Cerebras 每日免费 token（最多）</div></div>
   <div class="stat"><div class="stat-val">$0</div><div class="stat-key">基础使用费用</div></div>
+</div>
+
+<!-- ════════════════ 快速选型指南 ════════════════ -->
+<div class="section-header" style="margin-top:1rem">
+  <h2>🎯 快速选型指南</h2>
+  <div class="section-line"></div>
+</div>
+<div class="grid" style="margin-bottom:1rem">
+  <div class="card" style="border-color:rgba(78,255,176,.25);grid-column:1/-1">
+    <div class="card-body" style="padding:18px 24px">
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;font-size:12px;color:var(--text2);line-height:1.8">
+        <div><strong style="color:var(--accent)">🇨🇳 国内最高额度</strong><br>火山引擎 200万 token/天（每天重置）<br>智谱 AI 2000万 token + 永久免费模型</div>
+        <div><strong style="color:var(--accent2)">🌐 国际最高额度</strong><br>Mistral 10亿 token/月<br>Cerebras 100万 token/天</div>
+        <div><strong style="color:var(--accent4)">⚡ 最快推理速度</strong><br>Cerebras ≈ 2600 t/s（Llama4 Scout）<br>Groq ≈ 500+ t/s（LPU 芯片）</div>
+        <div><strong style="color:var(--accent5)">🖼️ 免费图像生成</strong><br>Pollinations 永久无限免费（无需 Key）<br>Together.ai FLUX 免费 3 个月</div>
+        <div><strong style="color:var(--accent3)">🔒 无需绑卡</strong><br>除 OpenCode Zen 外，所有国内平台均免绑卡<br>国际平台中 Google/Groq/Cerebras/OpenRouter 均免绑卡</div>
+        <div><strong style="color:var(--text)">🧑‍💻 编程首选</strong><br>DeepSeek V3/R1（性价比之王）<br>Groq Llama-3.1-8B（极速迭代）<br>GitHub Models GPT-4o（免费 GPT）</div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <!-- ════════════════ 国内平台 ════════════════ -->
 <div class="section-header">
   <h2>🇨🇳 国内平台 · 无需翻墙直连</h2>
   <div class="section-line"></div>
-  <div class="section-count">12 个</div>
+  <div class="section-count">14 个</div>
 </div>
 <div class="grid">
 
@@ -246,15 +284,17 @@ resp = client.chat.completions.<span class="fn">create</span>(
       <div class="card-badges">
         <span class="badge b-cn">国内直连</span>
         <span class="badge b-free">2000万 token + 永久免费模型</span>
+        <span class="badge b-new">🆕 GLM-5.1</span>
       </div>
     </div>
   </div>
   <div class="card-body">
-    <div class="card-desc">实名认证后赠 2000 万 token，GLM-4-Flash 完全永久免费（不扣额度），GLM-5 系列能力强。</div>
+    <div class="card-desc">实名认证后赠 2000 万 token，GLM-4-Flash 完全永久免费（不扣额度），最新 GLM-5.1 在编程与推理上表现优秀。</div>
     <table class="quota-table">
       <tr><th>项目</th><th>额度 / 限制</th></tr>
       <tr><td>注册赠送</td><td class="q-good">2000万 token（实名认证后）</td></tr>
       <tr><td>永久免费模型</td><td class="q-good">GLM-4-Flash（永不扣费）</td></tr>
+      <tr><td>最新旗舰</td><td>GLM-5.1 / GLM-4.7</td></tr>
       <tr><td>GLM-4-Flash RPM</td><td>60 RPM</td></tr>
       <tr><td>API 格式</td><td>OpenAI 兼容</td></tr>
       <tr><td>信用卡</td><td class="q-good">不需要</td></tr>
@@ -292,16 +332,17 @@ resp = client.chat.completions.<span class="fn">create</span>(
       <div class="card-badges">
         <span class="badge b-cn">国内直连</span>
         <span class="badge b-free">赠金 + 免费模型配额</span>
+        <span class="badge b-new">🆕 Qwen 3.5</span>
       </div>
     </div>
   </div>
   <div class="card-body">
-    <div class="card-desc">Qwen 系列全球最强中文开源模型。新用户赠金 3 个月有效，qwen-long 有长期免费月度配额。</div>
+    <div class="card-desc">Qwen 系列全球最强中文开源模型。最新 Qwen 3.5 性能超越 Llama 4，支持 256K 上下文，qwen-long 有长期免费月度配额。</div>
     <table class="quota-table">
       <tr><th>项目</th><th>额度 / 限制</th></tr>
       <tr><td>新用户赠金</td><td class="q-warn">有效期约 3 个月</td></tr>
       <tr><td>qwen-long 免费配额</td><td class="q-good">100万 token/月（长期）</td></tr>
-      <tr><td>qwen-long 限速</td><td>60 RPM，3万 TPM</td></tr>
+      <tr><td>最新旗舰</td><td>Qwen-3.5 / Qwen-3.5-Omni 多模态</td></tr>
       <tr><td>API 格式</td><td>OpenAI 兼容（DashScope endpoint）</td></tr>
       <tr><td>信用卡</td><td class="q-good">不需要（需实名认证）</td></tr>
     </table>
@@ -604,6 +645,102 @@ resp = client.chat.completions.<span class="fn">create</span>(
   </div>
 </div>
 
+<!-- DeepSeek API -->
+<div class="card" data-tags="cn free nocard">
+  <div class="card-head">
+    <div class="card-icon">🐋</div>
+    <div class="card-title-group">
+      <div class="card-name">DeepSeek API</div>
+      <div class="card-url">platform.deepseek.com</div>
+      <div class="card-badges">
+        <span class="badge b-cn">国内直连</span>
+        <span class="badge b-free">500万 token 赠送</span>
+        <span class="badge b-new">🆕 V4 更新</span>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="card-desc">DeepSeek V4 官方 API，注册即赠 500 万 token！Flash 版本缓存命中输入仅 ¥0.02/百万 tokens，Pro 版本永久降价至原价 1/4，1M 超长上下文，支持思考模式，是性价比最高的国产旗舰模型 API。</div>
+    <table class="quota-table">
+      <tr><th>项目</th><th>额度 / 限制</th></tr>
+      <tr><td>注册赠送</td><td class="q-good">500万 token</td></tr>
+      <tr><td>DeepSeek-V4-Flash</td><td class="q-good">缓存命中输入 ¥0.02/百万<br>缓存未命中 ¥1/百万<br>输出 ¥2/百万<br>上下文 1M</td></tr>
+      <tr><td>DeepSeek-V4-Pro</td><td class="q-good">缓存命中输入 ¥0.025/百万<br>缓存未命中 ¥3/百万<br>输出 ¥6/百万<br>上下文 1M</td></tr>
+      <tr><td>思考模式</td><td class="q-good">Flash / Pro 均支持</td></tr>
+      <tr><td>旧模型弃用</td><td class="q-warn">deepseek-chat/reasoner 2026/07/24 停用</td></tr>
+      <tr><td>API 格式</td><td>OpenAI 兼容</td></tr>
+      <tr><td>信用卡</td><td class="q-good">不需要</td></tr>
+    </table>
+  </div>
+  <div class="card-code">
+    <div class="code-tabs">
+      <button class="code-tab active" onclick="showTab(this,'ds-py')">Python</button>
+    </div>
+    <button class="copy-btn" onclick="copyCode(this)">copy</button>
+    <div class="code-panel active" id="ds-py"><pre><span class="kw">from</span> openai <span class="kw">import</span> OpenAI
+client = OpenAI(
+    api_key=<span class="str">"sk-你的 DeepSeek Key"</span>,
+    base_url=<span class="str">"https://api.deepseek.com"</span>,
+)
+resp = client.chat.completions.<span class="fn">create</span>(
+    model=<span class="str">"deepseek-v4-flash"</span>,<span class="cmt"> # 或 deepseek-v4-pro</span>
+    messages=[{<span class="str">"role"</span>:<span class="str">"user"</span>,<span class="str">"content"</span>:<span class="str">"你好！"</span>}],
+)
+<span class="fn">print</span>(resp.choices[<span class="num">0</span>].message.content)</pre></div>
+  </div>
+  <div class="card-foot">
+    <a class="foot-link" href="https://platform.deepseek.com" target="_blank">获取 API Key</a>
+    <span class="foot-note">注册 → API Keys → 创建 API Key</span>
+  </div>
+</div>
+
+<!-- 超算互联网 -->
+<div class="card" data-tags="cn free nocard">
+  <div class="card-head">
+    <div class="card-icon">🖥️</div>
+    <div class="card-title-group">
+      <div class="card-name">超算互联网（SCNet）</div>
+      <div class="card-url">scnet.cn</div>
+      <div class="card-badges">
+        <span class="badge b-cn">国内直连</span>
+        <span class="badge b-free">100万 token</span>
+        <span class="badge b-new">🆕 新增</span>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="card-desc">国家超算互联网核心节点上线的大模型 API 服务，新用户赠送 100 万 token，支持 Qwen3-30B 等模型，国家背书稳定可靠。</div>
+    <table class="quota-table">
+      <tr><th>项目</th><th>额度 / 限制</th></tr>
+      <tr><td>注册赠送</td><td class="q-good">100万 token（新人福利）</td></tr>
+      <tr><td>可用模型</td><td>Qwen3-30B-A3B 等</td></tr>
+      <tr><td>有效期</td><td class="q-warn">约 1 个月</td></tr>
+      <tr><td>API 格式</td><td>OpenAI 兼容</td></tr>
+      <tr><td>信用卡</td><td class="q-good">不需要</td></tr>
+    </table>
+  </div>
+  <div class="card-code">
+    <div class="code-tabs">
+      <button class="code-tab active" onclick="showTab(this,'scn-py')">Python</button>
+    </div>
+    <button class="copy-btn" onclick="copyCode(this)">copy</button>
+    <div class="code-panel active" id="scn-py"><pre><span class="kw">from</span> openai <span class="kw">import</span> OpenAI
+client = OpenAI(
+    api_key=<span class="str">"你的超算互联网 API Key"</span>,
+    base_url=<span class="str">"https://api.scnet.cn/v1"</span>,
+)
+resp = client.chat.completions.<span class="fn">create</span>(
+    model=<span class="str">"Qwen3-30B-A3B"</span>,
+    messages=[{<span class="str">"role"</span>:<span class="str">"user"</span>,<span class="str">"content"</span>:<span class="str">"你好！"</span>}],
+)
+<span class="fn">print</span>(resp.choices[<span class="num">0</span>].message.content)</pre></div>
+  </div>
+  <div class="card-foot">
+    <a class="foot-link" href="https://www.scnet.cn" target="_blank">注册获取 Key</a>
+    <span class="foot-note">注册 → 控制台 → API Keys</span>
+  </div>
+</div>
+
 <!-- OpenCode Zen -->
 <div class="card" data-tags="cn free">
   <div class="card-head">
@@ -619,7 +756,7 @@ resp = client.chat.completions.<span class="fn">create</span>(
     </div>
   </div>
   <div class="card-body">
-    <div class="card-desc">Big Pickle、DeepSeek V4 Flash Free、Nemotron 3 Super Free 等限时免费模型，token 无明确上限，但高峰期有共享限流。⚠️ 注册后务必关闭自动充值（默认 $5 以下自动充 $20）。</div>
+    <div class="card-desc">Big Pickle、DeepSeek V4 Flash Free、Nemotron 3 Super Free 等限时免费模型，token 无明确上限，但高峰期有共享限流。⚠️ 注册后务必关闭自动充值（默认 $5 以下自动充 $20）。⚠️ 使用 OpenAI Responses API 格式（非 Chat Completions），需用 <code>client.responses.create()</code> 调用。</div>
     <table class="quota-table">
       <tr><th>项目</th><th>额度 / 限制</th></tr>
       <tr><td>每日 token 上限</td><td class="q-good">无明确上限（合理范围内无限）</td></tr>
@@ -640,12 +777,14 @@ client = OpenAI(
     api_key=<span class="str">"你的 OpenCode API Key"</span>,
     base_url=<span class="str">"https://opencode.ai/zen/v1"</span>,
 )
+<span class="cmt"># ⚠️ 使用 Responses API（非 Chat Completions）</span>
 <span class="kw">def</span> <span class="fn">chat</span>(model, msgs, max_retry=<span class="num">4</span>):
     <span class="kw">for</span> i <span class="kw">in</span> <span class="fn">range</span>(max_retry):
         <span class="kw">try</span>:
-            <span class="kw">return</span> client.chat.completions.<span class="fn">create</span>(
-                model=model, messages=msgs
-            ).choices[<span class="num">0</span>].message.content
+            resp = client.responses.<span class="fn">create</span>(
+                model=model, input=msgs
+            )
+            <span class="kw">return</span> resp.output_text
         <span class="kw">except</span> RateLimitError:
             <span class="kw">if</span> i==max_retry-<span class="num">1</span>: <span class="kw">raise</span>
             time.<span class="fn">sleep</span>(<span class="num">2</span>**i + random.<span class="fn">random</span>())
@@ -705,7 +844,7 @@ img = requests.<span class="fn">get</span>(url)
     <div class="code-panel" id="poll-text"><pre><span class="kw">from</span> openai <span class="kw">import</span> OpenAI
 client = OpenAI(
     api_key=<span class="str">"pk_你的Publishable Key"</span>,<span class="cmt"> # enter.pollinations.ai 获取</span>
-    base_url=<span class="str">"https://gen.pollinations.ai/v1"</span>,
+    base_url=<span class="str">"https://text.pollinations.ai/openai"</span>,
 )
 resp = client.chat.completions.<span class="fn">create</span>(
     model=<span class="str">"openai"</span>,<span class="cmt"> # openai/claude/gemini/deepseek/qwen-coder</span>
@@ -725,7 +864,7 @@ resp = client.chat.completions.<span class="fn">create</span>(
 <div class="section-header">
   <h2>🌐 国际平台 · 需要科学上网</h2>
   <div class="section-line"></div>
-  <div class="section-count">8 个</div>
+  <div class="section-count">12 个</div>
 </div>
 <div class="grid">
 
@@ -1121,6 +1260,198 @@ resp = requests.<span class="fn">post</span>(
   </div>
 </div>
 
+<!-- Mistral AI -->
+<div class="card" data-tags="intl free nocard">
+  <div class="card-head">
+    <div class="card-icon">🇫🇷</div>
+    <div class="card-title-group">
+      <div class="card-name">Mistral AI（La Plateforme）</div>
+      <div class="card-url">console.mistral.ai</div>
+      <div class="card-badges">
+        <span class="badge b-vpn">需翻墙</span>
+        <span class="badge b-free">10亿 token/月</span>
+        <span class="badge b-new">🆕 新增</span>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="card-desc">法国 Mistral AI 官方平台，Experiment 计划免费提供所有模型（含 Mistral Large、Codestral、Pixtral），每月 10 亿 token，是免费额度最大的国际平台。⚠️ 免费层提示词可能被用于模型训练。</div>
+    <table class="quota-table">
+      <tr><th>项目</th><th>额度 / 限制</th></tr>
+      <tr><td>每月 token</td><td class="q-good">10亿（Experiment 计划，永久免费）</td></tr>
+      <tr><td>RPM</td><td class="q-warn">2 请求/分钟</td></tr>
+      <tr><td>TPM</td><td class="q-good">50万 token/分钟</td></tr>
+      <tr><td>可用模型</td><td class="q-good">全部模型（Large / Small / Codestral / Pixtral）</td></tr>
+      <tr><td>⚠️ 隐私</td><td class="q-warn">免费层提示词可能用于训练</td></tr>
+      <tr><td>信用卡</td><td class="q-good">不需要（需手机验证）</td></tr>
+    </table>
+  </div>
+  <div class="card-code">
+    <div class="code-tabs">
+      <button class="code-tab active" onclick="showTab(this,'mist-py')">Python</button>
+    </div>
+    <button class="copy-btn" onclick="copyCode(this)">copy</button>
+    <div class="code-panel active" id="mist-py"><pre><span class="kw">from</span> openai <span class="kw">import</span> OpenAI
+client = OpenAI(
+    api_key=<span class="str">"你的 Mistral API Key"</span>,
+    base_url=<span class="str">"https://api.mistral.ai/v1"</span>,
+)
+resp = client.chat.completions.<span class="fn">create</span>(
+    model=<span class="str">"mistral-small-latest"</span>,<span class="cmt"> # 或 mistral-large-latest</span>
+    messages=[{<span class="str">"role"</span>:<span class="str">"user"</span>,<span class="str">"content"</span>:<span class="str">"Hello!"</span>}],
+)
+<span class="fn">print</span>(resp.choices[<span class="num">0</span>].message.content)</pre></div>
+  </div>
+  <div class="card-foot">
+    <a class="foot-link" href="https://console.mistral.ai" target="_blank">获取 API Key</a>
+    <span class="foot-note">注册 → 验证手机 → 选择 Experiment 计划 → API Keys</span>
+  </div>
+</div>
+
+<!-- GitHub Models -->
+<div class="card" data-tags="intl free nocard">
+  <div class="card-head">
+    <div class="card-icon">🐙</div>
+    <div class="card-title-group">
+      <div class="card-name">GitHub Models</div>
+      <div class="card-url">github.com/marketplace/models</div>
+      <div class="card-badges">
+        <span class="badge b-vpn">需翻墙</span>
+        <span class="badge b-free">GPT-4o / Llama / DeepSeek</span>
+        <span class="badge b-new">🆕 新增</span>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="card-desc">GitHub 官方模型市场，免费访问 40+ 模型（含 GPT-4o、GPT-4.1、Llama-3.1-405B、DeepSeek-R1、Mistral Large），OpenAI 兼容 API，GitHub 账号即可用，适合原型开发和 CI/CD 集成。</div>
+    <table class="quota-table">
+      <tr><th>模型层级</th><th>RPM</th><th>RPD（每日）</th></tr>
+      <tr><td>High Tier（GPT-4o / o3）</td><td class="q-warn">10</td><td class="q-warn">50</td></tr>
+      <tr><td>Low Tier（Llama-3.1-8B / Phi-4）</td><td class="q-good">15</td><td class="q-good">150</td></tr>
+      <tr><td>每请求 token 上限</td><td class="q-warn">输入 8K / 输出 4K</td></tr>
+      <tr><td>API 格式</td><td>OpenAI 兼容</td></tr>
+      <tr><td>信用卡</td><td class="q-good">不需要</td></tr>
+    </table>
+  </div>
+  <div class="card-code">
+    <div class="code-tabs">
+      <button class="code-tab active" onclick="showTab(this,'gh-py')">Python</button>
+    </div>
+    <button class="copy-btn" onclick="copyCode(this)">copy</button>
+    <div class="code-panel active" id="gh-py"><pre><span class="kw">from</span> openai <span class="kw">import</span> OpenAI
+client = OpenAI(
+    api_key=<span class="str">"你的 GitHub Personal Access Token"</span>,
+    base_url=<span class="str">"https://models.github.ai/inference"</span>,
+)
+resp = client.chat.completions.<span class="fn">create</span>(
+    model=<span class="str">"gpt-4o"</span>,<span class="cmt"> # 或 meta-llama/Llama-3.3-70B-Instruct</span>
+    messages=[{<span class="str">"role"</span>:<span class="str">"user"</span>,<span class="str">"content"</span>:<span class="str">"Hello!"</span>}],
+)
+<span class="fn">print</span>(resp.choices[<span class="num">0</span>].message.content)</pre></div>
+  </div>
+  <div class="card-foot">
+    <a class="foot-link" href="https://github.com/marketplace/models" target="_blank">浏览模型</a>
+    <span class="foot-note">Settings → Developer settings → Fine-grained token → models:read</span>
+  </div>
+</div>
+
+<!-- Hugging Face -->
+<div class="card" data-tags="intl free nocard image">
+  <div class="card-head">
+    <div class="card-icon">🤗</div>
+    <div class="card-title-group">
+      <div class="card-name">Hugging Face Inference</div>
+      <div class="card-url">huggingface.co/inference-api</div>
+      <div class="card-badges">
+        <span class="badge b-vpn">需翻墙</span>
+        <span class="badge b-free">10万+ 模型</span>
+        <span class="badge b-img">文/图/音/视频</span>
+        <span class="badge b-new">🆕 新增</span>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="card-desc">全球最大开源模型社区，Serverless Inference API 免费访问 10万+ 模型，含 Llama、Qwen、FLUX 图像生成等，支持文本/图像/音频/视频多模态，适合模型评估和快速实验。</div>
+    <table class="quota-table">
+      <tr><th>项目</th><th>额度 / 限制</th></tr>
+      <tr><td>免费速率</td><td class="q-warn">约 300 请求/小时</td></tr>
+      <tr><td>可用模型</td><td class="q-good">10万+ 开源模型</td></tr>
+      <tr><td>模型大小限制</td><td class="q-warn">大于 10GB 的模型可能无法加载</td></tr>
+      <tr><td>冷启动</td><td class="q-warn">首次调用可能有冷启动延迟</td></tr>
+      <tr><td>API 格式</td><td>OpenAI 兼容（router.huggingface.co/v1）</td></tr>
+      <tr><td>信用卡</td><td class="q-good">不需要</td></tr>
+    </table>
+  </div>
+  <div class="card-code">
+    <div class="code-tabs">
+      <button class="code-tab active" onclick="showTab(this,'hf-py')">Python</button>
+    </div>
+    <button class="copy-btn" onclick="copyCode(this)">copy</button>
+    <div class="code-panel active" id="hf-py"><pre><span class="kw">from</span> openai <span class="kw">import</span> OpenAI
+client = OpenAI(
+    api_key=<span class="str">"hf_你的 HuggingFace Token"</span>,
+    base_url=<span class="str">"https://router.huggingface.co/v1"</span>,
+)
+resp = client.chat.completions.<span class="fn">create</span>(
+    model=<span class="str">"meta-llama/Llama-3.3-70B-Instruct"</span>,
+    messages=[{<span class="str">"role"</span>:<span class="str">"user"</span>,<span class="str">"content"</span>:<span class="str">"Hello!"</span>}],
+)
+<span class="fn">print</span>(resp.choices[<span class="num">0</span>].message.content)</pre></div>
+  </div>
+  <div class="card-foot">
+    <a class="foot-link" href="https://huggingface.co/inference-api/serverless" target="_blank">获取 Token</a>
+    <span class="foot-note">Settings → Access Tokens → New token → Read 权限</span>
+  </div>
+</div>
+
+<!-- Cohere -->
+<div class="card" data-tags="intl free nocard">
+  <div class="card-head">
+    <div class="card-icon">🔗</div>
+    <div class="card-title-group">
+      <div class="card-name">Cohere</div>
+      <div class="card-url">dashboard.cohere.com</div>
+      <div class="card-badges">
+        <span class="badge b-vpn">需翻墙</span>
+        <span class="badge b-free">1000次/月</span>
+        <span class="badge b-new">🆕 新增</span>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="card-desc">Command R+ 等模型免费调用，内置 RAG 和工具调用能力，Embed-4 嵌入模型免费，每月 1000 次调用，适合检索增强生成和企业搜索场景。</div>
+    <table class="quota-table">
+      <tr><th>项目</th><th>额度 / 限制</th></tr>
+      <tr><td>每月调用</td><td class="q-warn">1000 次（所有模型合计）</td></tr>
+      <tr><td>RPM</td><td>20 请求/分钟</td></tr>
+      <tr><td>免费模型</td><td class="q-good">Command R+ / Embed-4</td></tr>
+      <tr><td>特色能力</td><td class="q-good">内置 RAG + 工具调用 + 嵌入</td></tr>
+      <tr><td>API 格式</td><td>OpenAI 兼容</td></tr>
+      <tr><td>信用卡</td><td class="q-good">不需要</td></tr>
+    </table>
+  </div>
+  <div class="card-code">
+    <div class="code-tabs">
+      <button class="code-tab active" onclick="showTab(this,'co-py')">Python</button>
+    </div>
+    <button class="copy-btn" onclick="copyCode(this)">copy</button>
+    <div class="code-panel active" id="co-py"><pre><span class="kw">from</span> openai <span class="kw">import</span> OpenAI
+client = OpenAI(
+    api_key=<span class="str">"你的 Cohere API Key"</span>,
+    base_url=<span class="str">"https://api.cohere.ai/v1"</span>,
+)
+resp = client.chat.completions.<span class="fn">create</span>(
+    model=<span class="str">"command-r-plus"</span>,
+    messages=[{<span class="str">"role"</span>:<span class="str">"user"</span>,<span class="str">"content"</span>:<span class="str">"Hello!"</span>}],
+)
+<span class="fn">print</span>(resp.choices[<span class="num">0</span>].message.content)</pre></div>
+  </div>
+  <div class="card-foot">
+    <a class="foot-link" href="https://dashboard.cohere.com" target="_blank">获取 API Key</a>
+    <span class="foot-note">注册 → API Keys → Create Key</span>
+  </div>
+</div>
+
 </div><!-- /grid intl -->
 
 <!-- ════════════════ 图像生成专用 ════════════════ -->
@@ -1164,7 +1495,7 @@ resp = requests.<span class="fn">post</span>(
     <button class="copy-btn" onclick="copyCode(this)">copy</button>
     <div class="code-panel active" id="tog-img"><pre><span class="kw">import</span> requests
 resp = requests.<span class="fn">post</span>(
-    <span class="str">"https://api.together.xyz/v1/images/generations"</span>,
+    <span class="str">"https://api.together.ai/v1/images/generations"</span>,
     headers={<span class="str">"Authorization"</span>:<span class="str">"Bearer 你的Key"</span>},
     json={<span class="str">"model"</span>:<span class="str">"black-forest-labs/FLUX.1-schnell-Free"</span>,
           <span class="str">"prompt"</span>:<span class="str">"a cat on the moon"</span>,
@@ -1174,7 +1505,7 @@ resp = requests.<span class="fn">post</span>(
     <div class="code-panel" id="tog-text"><pre><span class="kw">from</span> openai <span class="kw">import</span> OpenAI
 client = OpenAI(
     api_key=<span class="str">"你的 Together API Key"</span>,
-    base_url=<span class="str">"https://api.together.xyz/v1"</span>,
+    base_url=<span class="str">"https://api.together.ai/v1"</span>,
 )
 resp = client.chat.completions.<span class="fn">create</span>(
     model=<span class="str">"meta-llama/Llama-3.3-70B-Instruct-Turbo-Free"</span>,
@@ -1288,6 +1619,99 @@ asyncio.<span class="fn">run</span>(<span class="fn">main</span>())</pre></div>
 
 </div><!-- /grid image -->
 
+<!-- ════════════════ 前端/特殊平台 ════════════════ -->
+<div class="section-header">
+  <h2>⚡ 前端/特殊平台 · 无需后端</h2>
+  <div class="section-line"></div>
+  <div class="section-count">1 个</div>
+</div>
+<div class="grid">
+
+<!-- Puter.js -->
+<div class="card" data-tags="cn intl free nocard image">
+  <div class="card-head">
+    <div class="card-icon">🌐</div>
+    <div class="card-title-group">
+      <div class="card-name">Puter.js</div>
+      <div class="card-url">developer.puter.com</div>
+      <div class="card-badges">
+        <span class="badge b-cn">国内可访问</span>
+        <span class="badge b-free">400+ 模型免费</span>
+        <span class="badge b-img">文/图/TTS</span>
+        <span class="badge b-new">🆕 新增</span>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="card-desc">首创「User-Pays」模式：开发者免费调用，用户承担费用。一个 <code>&lt;script&gt;</code> 标签即可访问 400+ 模型（GPT-5.5、Claude Opus 4.7、Gemini、Grok、DeepSeek 等），无需 API Key、无需后端、无需信用卡。支持文本/图像/TTS，适合前端应用和快速原型。</div>
+    <table class="quota-table">
+      <tr><th>项目</th><th>额度 / 限制</th></tr>
+      <tr><td>开发者费用</td><td class="q-good">完全免费（用户承担自己的使用费）</td></tr>
+      <tr><td>可用模型</td><td class="q-good">400+（GPT-5.5 / Claude / Gemini / Grok / DeepSeek 等）</td></tr>
+      <tr><td>使用方式</td><td class="q-good">前端 JS 一行代码调用，无需后端</td></tr>
+      <tr><td>⚠️ 限制</td><td class="q-warn">浏览器优先，后端脚本需用户登录态</td></tr>
+      <tr><td>API 格式</td><td>Puter SDK + OpenAI 兼容端点</td></tr>
+      <tr><td>信用卡</td><td class="q-good">开发者不需要</td></tr>
+    </table>
+  </div>
+  <div class="card-code">
+    <div class="code-tabs">
+      <button class="code-tab active" onclick="showTab(this,'puter-js')">JavaScript（前端）</button>
+    </div>
+    <button class="copy-btn" onclick="copyCode(this)">copy</button>
+    <div class="code-panel active" id="puter-js"><pre><span class="cmt">&lt;!-- 一个 script 标签即可 --&gt;</span>
+<span class="kw">&lt;script</span> src=<span class="str">"https://js.puter.com/v2/"</span><span class="kw">&gt;&lt;/script&gt;</span>
+<span class="kw">&lt;script&gt;</span>
+puter.ai.<span class="fn">chat</span>(
+  <span class="str">"用三句话解释量子计算"</span>,
+  { model: <span class="str">"gpt-5.4-nano"</span> }
+).<span class="fn">then</span>(response => {
+  document.body.innerHTML = response;
+});
+<span class="kw">&lt;/script&gt;</span>
+<span class="cmt">// 其他模型: claude-sonnet-4-6 / gemini-2.5-flash</span>
+<span class="cmt">//          deepseek-r1 / grok-4-fast / llama-4-scout</span></pre></div>
+  </div>
+  <div class="card-foot">
+    <a class="foot-link" href="https://developer.puter.com/tutorials/free-llm-api/" target="_blank">查看文档</a>
+    <span class="foot-note">无需注册，引入 JS 即可使用</span>
+  </div>
+</div>
+
+</div><!-- /grid special -->
+
+<!-- ════════════════ 常见问题 ════════════════ -->
+<div class="section-header">
+  <h2>❓ 常见问题 FAQ</h2>
+  <div class="section-line"></div>
+</div>
+<div class="grid" style="margin-bottom:2rem">
+  <div class="card" style="border-color:rgba(78,255,176,.12)">
+    <div class="card-body" style="padding:18px">
+      <div style="font-size:13px;color:var(--accent);font-weight:500;margin-bottom:6px">Q: 免费额度用完了怎么办？</div>
+      <div class="card-desc">多数平台注册赠送的 token 有有效期，用完后需付费或等重置。建议：① 优先使用永久免费模型（智谱 GLM-4-Flash、百度 ERNIE-Speed、腾讯 hunyuan-lite）；② 多平台轮换使用；③ 火山引擎每天重置 200 万 token。</div>
+    </div>
+  </div>
+  <div class="card" style="border-color:rgba(56,217,245,.12)">
+    <div class="card-body" style="padding:18px">
+      <div style="font-size:13px;color:var(--accent2);font-weight:500;margin-bottom:6px">Q: 所有平台都兼容 OpenAI SDK 吗？</div>
+      <div class="card-desc">本页列出的 30 个平台中，29 个支持 OpenAI 兼容格式（只需改 base_url 和 api_key）。唯一例外是 Puter.js（前端 SDK 调用），但它也提供 OpenAI 兼容端点。</div>
+    </div>
+  </div>
+  <div class="card" style="border-color:rgba(167,139,250,.12)">
+    <div class="card-body" style="padding:18px">
+      <div style="font-size:13px;color:var(--accent5);font-weight:500;margin-bottom:6px">Q: 国内平台和海外平台怎么选？</div>
+      <div class="card-desc">国内平台延迟低（通常 &lt;100ms）、中文优化好、无需翻墙，但模型选择较少。国际平台模型更丰富（含 GPT/Claude/Gemini），但需翻墙且延迟较高。建议：中文任务用国内，英文/多模态用国际。</div>
+    </div>
+  </div>
+  <div class="card" style="border-color:rgba(255,201,74,.12)">
+    <div class="card-body" style="padding:18px">
+      <div style="font-size:13px;color:var(--accent4);font-weight:500;margin-bottom:6px">Q: 免费层的数据会被用于训练吗？</div>
+      <div class="card-desc">⚠️ Google AI Studio 和 Mistral 免费层明确声明提示词可能用于模型训练。如需隐私保护，优先选择智谱、火山引擎、DeepSeek 等国内平台，或使用 Groq/Cerebras 等不用于训练的国际平台。</div>
+    </div>
+  </div>
+</div>
+
 <!-- ════════════════ 参考资源 ════════════════ -->
 <div class="section-header">
   <h2>📚 参考资源 &amp; 实时跟踪</h2>
@@ -1321,7 +1745,7 @@ asyncio.<span class="fn">run</span>(<span class="fn">main</span>())</pre></div>
 
 <footer>
   <div class="footer-note">
-    免费 AI API 资源目录 · 最后更新：2026-06-01<br>
+    免费 AI API 资源目录 · 最后更新：2026-06-02<br>
     数据来源：官方文档 + TokenMix.ai 实测（2026年4-5月验证）。部分限额随时变动，以官方文档为准。
   </div>
   <a class="footer-gh" href="https://github.com/or-study" target="_blank">持续更新参考 →</a>
@@ -1358,8 +1782,8 @@ function copyCode(btn){
   const p=btn.closest('.card-code').querySelector('.code-panel.active pre');
   if(!p)return;
   navigator.clipboard.writeText(p.innerText).then(()=>{
-    btn.textContent='copied!';btn.style.color='var(--accent)';
-    setTimeout(()=>{btn.textContent='copy';btn.style.color='';},2000);
+    btn.textContent='copied!';btn.style.color='var(--accent)';btn.style.borderColor='var(--accent)';
+    setTimeout(()=>{btn.textContent='copy';btn.style.color='';btn.style.borderColor='';},2000);
   });
 }
 updateCount();

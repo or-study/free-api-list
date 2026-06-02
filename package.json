@@ -1,0 +1,28 @@
+{
+  "name": "free-api-list",
+  "version": "1.0.0",
+  "description": "🔥 免费 AI API 全平台汇总 - 汇聚全球 30+ 免费 AI 平台",
+  "main": "index.html",
+  "scripts": {
+    "dev": "python3 -m http.server 8080",
+    "start": "python3 -m http.server 8080",
+    "format": "prettier --write \"*.html\" \"*.md\"",
+    "format:check": "prettier --check \"*.html\" \"*.md\"",
+    "validate": "node scripts/validate-json.js"
+  },
+  "keywords": [
+    "ai",
+    "api",
+    "free-api",
+    "llm",
+    "deepseek",
+    "qwen",
+    "openai"
+  ],
+  "author": "OR Study",
+  "license": "MIT",
+  "devDependencies": {
+    "prettier": "^3.0.0"
+  },
+  "dependencies": {}
+}
