@@ -284,15 +284,17 @@ resp = client.chat.completions.<span class="fn">create</span>(
       <div class="card-badges">
         <span class="badge b-cn">国内直连</span>
         <span class="badge b-free">2000万 token + 永久免费模型</span>
+        <span class="badge b-new">🆕 GLM-5.1</span>
       </div>
     </div>
   </div>
   <div class="card-body">
-    <div class="card-desc">实名认证后赠 2000 万 token，GLM-4-Flash 完全永久免费（不扣额度），GLM-5 系列能力强。</div>
+    <div class="card-desc">实名认证后赠 2000 万 token，GLM-4-Flash 完全永久免费（不扣额度），最新 GLM-5.1 在编程与推理上表现优秀。</div>
     <table class="quota-table">
       <tr><th>项目</th><th>额度 / 限制</th></tr>
       <tr><td>注册赠送</td><td class="q-good">2000万 token（实名认证后）</td></tr>
       <tr><td>永久免费模型</td><td class="q-good">GLM-4-Flash（永不扣费）</td></tr>
+      <tr><td>最新旗舰</td><td>GLM-5.1 / GLM-4.7</td></tr>
       <tr><td>GLM-4-Flash RPM</td><td>60 RPM</td></tr>
       <tr><td>API 格式</td><td>OpenAI 兼容</td></tr>
       <tr><td>信用卡</td><td class="q-good">不需要</td></tr>
@@ -330,16 +332,17 @@ resp = client.chat.completions.<span class="fn">create</span>(
       <div class="card-badges">
         <span class="badge b-cn">国内直连</span>
         <span class="badge b-free">赠金 + 免费模型配额</span>
+        <span class="badge b-new">🆕 Qwen 3.5</span>
       </div>
     </div>
   </div>
   <div class="card-body">
-    <div class="card-desc">Qwen 系列全球最强中文开源模型。新用户赠金 3 个月有效，qwen-long 有长期免费月度配额。</div>
+    <div class="card-desc">Qwen 系列全球最强中文开源模型。最新 Qwen 3.5 性能超越 Llama 4，支持 256K 上下文，qwen-long 有长期免费月度配额。</div>
     <table class="quota-table">
       <tr><th>项目</th><th>额度 / 限制</th></tr>
       <tr><td>新用户赠金</td><td class="q-warn">有效期约 3 个月</td></tr>
       <tr><td>qwen-long 免费配额</td><td class="q-good">100万 token/月（长期）</td></tr>
-      <tr><td>qwen-long 限速</td><td>60 RPM，3万 TPM</td></tr>
+      <tr><td>最新旗舰</td><td>Qwen-3.5 / Qwen-3.5-Omni 多模态</td></tr>
       <tr><td>API 格式</td><td>OpenAI 兼容（DashScope endpoint）</td></tr>
       <tr><td>信用卡</td><td class="q-good">不需要（需实名认证）</td></tr>
     </table>
@@ -652,18 +655,19 @@ resp = client.chat.completions.<span class="fn">create</span>(
       <div class="card-badges">
         <span class="badge b-cn">国内直连</span>
         <span class="badge b-free">500万 token 赠送</span>
-        <span class="badge b-new">🆕 新增</span>
+        <span class="badge b-new">🆕 V4 更新</span>
       </div>
     </div>
   </div>
   <div class="card-body">
-    <div class="card-desc">DeepSeek V3/R1 官方 API，注册即赠 500 万 token（约 10 元），用完后按量付费价格极低（V3 输入 ¥1/百万、输出 ¥2/百万），是性价比最高的国产模型 API。</div>
+    <div class="card-desc">DeepSeek V4 官方 API，注册即赠 500 万 token！Flash 版本缓存命中输入仅 ¥0.02/百万 tokens，Pro 版本永久降价至原价 1/4，1M 超长上下文，支持思考模式，是性价比最高的国产旗舰模型 API。</div>
     <table class="quota-table">
       <tr><th>项目</th><th>额度 / 限制</th></tr>
-      <tr><td>注册赠送</td><td class="q-good">500万 token（约 ¥10）</td></tr>
-      <tr><td>DeepSeek-V3 价格</td><td class="q-good">输入 ¥1/百万 token，输出 ¥2/百万</td></tr>
-      <tr><td>DeepSeek-R1 价格</td><td class="q-good">输入 ¥4/百万 token，输出 ¥16/百万</td></tr>
-      <tr><td>上下文长度</td><td class="q-good">64K tokens</td></tr>
+      <tr><td>注册赠送</td><td class="q-good">500万 token</td></tr>
+      <tr><td>DeepSeek-V4-Flash</td><td class="q-good">缓存命中输入 ¥0.02/百万<br>缓存未命中 ¥1/百万<br>输出 ¥2/百万<br>上下文 1M</td></tr>
+      <tr><td>DeepSeek-V4-Pro</td><td class="q-good">缓存命中输入 ¥0.025/百万<br>缓存未命中 ¥3/百万<br>输出 ¥6/百万<br>上下文 1M</td></tr>
+      <tr><td>思考模式</td><td class="q-good">Flash / Pro 均支持</td></tr>
+      <tr><td>旧模型弃用</td><td class="q-warn">deepseek-chat/reasoner 2026/07/24 停用</td></tr>
       <tr><td>API 格式</td><td>OpenAI 兼容</td></tr>
       <tr><td>信用卡</td><td class="q-good">不需要</td></tr>
     </table>
@@ -679,7 +683,7 @@ client = OpenAI(
     base_url=<span class="str">"https://api.deepseek.com"</span>,
 )
 resp = client.chat.completions.<span class="fn">create</span>(
-    model=<span class="str">"deepseek-chat"</span>,<span class="cmt"> # DeepSeek-V3</span>
+    model=<span class="str">"deepseek-v4-flash"</span>,<span class="cmt"> # 或 deepseek-v4-pro</span>
     messages=[{<span class="str">"role"</span>:<span class="str">"user"</span>,<span class="str">"content"</span>:<span class="str">"你好！"</span>}],
 )
 <span class="fn">print</span>(resp.choices[<span class="num">0</span>].message.content)</pre></div>
