@@ -64,6 +64,7 @@ main{position:relative;z-index:5;max-width:1300px;margin:0 auto;padding:2rem}
 .b-img{background:rgba(167,139,250,.1);color:var(--accent5);border:1px solid rgba(167,139,250,.2)}
 .b-paid{background:rgba(255,201,74,.1);color:var(--accent4);border:1px solid rgba(255,201,74,.2)}
 .b-fast{background:rgba(78,255,176,.06);color:#6fffcc;border:1px solid rgba(78,255,176,.12)}
+.b-new{background:rgba(56,217,245,.1);color:var(--accent2);border:1px solid rgba(56,217,245,.25)}
 .card-body{padding:16px 20px;flex:1}
 .card-desc{font-size:12px;color:var(--text2);line-height:1.8}
 .card-desc code{background:var(--surface2);padding:1px 6px;border-radius:3px;font-size:11px;color:var(--accent2);border:1px solid var(--border)}
@@ -108,11 +109,11 @@ footer{position:relative;z-index:5;max-width:1300px;margin:4rem auto 0;padding:2
 <header>
   <div class="header-tag">Free AI API Directory · Updated 2026-06-02 · Verified against official docs &amp; TokenMix.ai</div>
   <h1>免费 AI API<br><span>资源目录 2026</span></h1>
-  <p class="header-sub">汇集全球 23 个可免费调用的大模型 API 平台，包含精确的 RPM / TPM / RPD / 每日 token 限额，均来自官方文档或 2026 年 4-5 月实测数据。</p>
+  <p class="header-sub">汇集全球 30 个可免费调用的大模型 API 平台，包含精确的 RPM / TPM / RPD / 每日 token 限额，均来自官方文档或 2026 年 4-5 月实测数据。</p>
   <div class="header-meta">
     <div class="meta-pill"><span class="dot"></span>数据实时更新</div>
-    <div class="meta-pill">🇨🇳 12 个国内直连平台</div>
-    <div class="meta-pill">🌐 8 个国际平台</div>
+    <div class="meta-pill">🇨🇳 14 个国内直连平台</div>
+    <div class="meta-pill">🌐 12 个国际平台</div>
     <div class="meta-pill">🖼️ 3 个图像生成专用</div>
     <div class="meta-pill">📊 含精确限额 RPM/TPM/RPD</div>
   </div>
@@ -135,17 +136,37 @@ footer{position:relative;z-index:5;max-width:1300px;margin:4rem auto 0;padding:2
 
 <main>
 <div class="stats-bar">
-  <div class="stat"><div class="stat-val" id="visible-count">23</div><div class="stat-key">当前显示平台数</div></div>
-  <div class="stat"><div class="stat-val">12</div><div class="stat-key">国内直连平台</div></div>
+  <div class="stat"><div class="stat-val" id="visible-count">30</div><div class="stat-key">当前显示平台数</div></div>
+  <div class="stat"><div class="stat-val">14</div><div class="stat-key">国内直连平台</div></div>
   <div class="stat"><div class="stat-val">100万</div><div class="stat-key">Cerebras 每日免费 token（最多）</div></div>
   <div class="stat"><div class="stat-val">$0</div><div class="stat-key">基础使用费用</div></div>
+</div>
+
+<!-- ════════════════ 快速选型指南 ════════════════ -->
+<div class="section-header" style="margin-top:1rem">
+  <h2>🎯 快速选型指南</h2>
+  <div class="section-line"></div>
+</div>
+<div class="grid" style="margin-bottom:1rem">
+  <div class="card" style="border-color:rgba(78,255,176,.25);grid-column:1/-1">
+    <div class="card-body" style="padding:18px 24px">
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;font-size:12px;color:var(--text2);line-height:1.8">
+        <div><strong style="color:var(--accent)">🇨🇳 国内最高额度</strong><br>火山引擎 200万 token/天（每天重置）<br>智谱 AI 2000万 token + 永久免费模型</div>
+        <div><strong style="color:var(--accent2)">🌐 国际最高额度</strong><br>Mistral 10亿 token/月<br>Cerebras 100万 token/天</div>
+        <div><strong style="color:var(--accent4)">⚡ 最快推理速度</strong><br>Cerebras ≈ 2600 t/s（Llama4 Scout）<br>Groq ≈ 500+ t/s（LPU 芯片）</div>
+        <div><strong style="color:var(--accent5)">🖼️ 免费图像生成</strong><br>Pollinations 永久无限免费（无需 Key）<br>Together.ai FLUX 免费 3 个月</div>
+        <div><strong style="color:var(--accent3)">🔒 无需绑卡</strong><br>除 OpenCode Zen 外，所有国内平台均免绑卡<br>国际平台中 Google/Groq/Cerebras/OpenRouter 均免绑卡</div>
+        <div><strong style="color:var(--text)">🧑‍💻 编程首选</strong><br>DeepSeek V3/R1（性价比之王）<br>Groq Llama-3.1-8B（极速迭代）<br>GitHub Models GPT-4o（免费 GPT）</div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <!-- ════════════════ 国内平台 ════════════════ -->
 <div class="section-header">
   <h2>🇨🇳 国内平台 · 无需翻墙直连</h2>
   <div class="section-line"></div>
-  <div class="section-count">12 个</div>
+  <div class="section-count">14 个</div>
 </div>
 <div class="grid">
 
@@ -621,6 +642,101 @@ resp = client.chat.completions.<span class="fn">create</span>(
   </div>
 </div>
 
+<!-- DeepSeek API -->
+<div class="card" data-tags="cn free nocard">
+  <div class="card-head">
+    <div class="card-icon">🐋</div>
+    <div class="card-title-group">
+      <div class="card-name">DeepSeek API</div>
+      <div class="card-url">platform.deepseek.com</div>
+      <div class="card-badges">
+        <span class="badge b-cn">国内直连</span>
+        <span class="badge b-free">500万 token 赠送</span>
+        <span class="badge b-new">🆕 新增</span>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="card-desc">DeepSeek V3/R1 官方 API，注册即赠 500 万 token（约 10 元），用完后按量付费价格极低（V3 输入 ¥1/百万、输出 ¥2/百万），是性价比最高的国产模型 API。</div>
+    <table class="quota-table">
+      <tr><th>项目</th><th>额度 / 限制</th></tr>
+      <tr><td>注册赠送</td><td class="q-good">500万 token（约 ¥10）</td></tr>
+      <tr><td>DeepSeek-V3 价格</td><td class="q-good">输入 ¥1/百万 token，输出 ¥2/百万</td></tr>
+      <tr><td>DeepSeek-R1 价格</td><td class="q-good">输入 ¥4/百万 token，输出 ¥16/百万</td></tr>
+      <tr><td>上下文长度</td><td class="q-good">64K tokens</td></tr>
+      <tr><td>API 格式</td><td>OpenAI 兼容</td></tr>
+      <tr><td>信用卡</td><td class="q-good">不需要</td></tr>
+    </table>
+  </div>
+  <div class="card-code">
+    <div class="code-tabs">
+      <button class="code-tab active" onclick="showTab(this,'ds-py')">Python</button>
+    </div>
+    <button class="copy-btn" onclick="copyCode(this)">copy</button>
+    <div class="code-panel active" id="ds-py"><pre><span class="kw">from</span> openai <span class="kw">import</span> OpenAI
+client = OpenAI(
+    api_key=<span class="str">"sk-你的 DeepSeek Key"</span>,
+    base_url=<span class="str">"https://api.deepseek.com"</span>,
+)
+resp = client.chat.completions.<span class="fn">create</span>(
+    model=<span class="str">"deepseek-chat"</span>,<span class="cmt"> # DeepSeek-V3</span>
+    messages=[{<span class="str">"role"</span>:<span class="str">"user"</span>,<span class="str">"content"</span>:<span class="str">"你好！"</span>}],
+)
+<span class="fn">print</span>(resp.choices[<span class="num">0</span>].message.content)</pre></div>
+  </div>
+  <div class="card-foot">
+    <a class="foot-link" href="https://platform.deepseek.com" target="_blank">获取 API Key</a>
+    <span class="foot-note">注册 → API Keys → 创建 API Key</span>
+  </div>
+</div>
+
+<!-- 超算互联网 -->
+<div class="card" data-tags="cn free nocard">
+  <div class="card-head">
+    <div class="card-icon">🖥️</div>
+    <div class="card-title-group">
+      <div class="card-name">超算互联网（SCNet）</div>
+      <div class="card-url">scnet.cn</div>
+      <div class="card-badges">
+        <span class="badge b-cn">国内直连</span>
+        <span class="badge b-free">100万 token</span>
+        <span class="badge b-new">🆕 新增</span>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="card-desc">国家超算互联网核心节点上线的大模型 API 服务，新用户赠送 100 万 token，支持 Qwen3-30B 等模型，国家背书稳定可靠。</div>
+    <table class="quota-table">
+      <tr><th>项目</th><th>额度 / 限制</th></tr>
+      <tr><td>注册赠送</td><td class="q-good">100万 token（新人福利）</td></tr>
+      <tr><td>可用模型</td><td>Qwen3-30B-A3B 等</td></tr>
+      <tr><td>有效期</td><td class="q-warn">约 1 个月</td></tr>
+      <tr><td>API 格式</td><td>OpenAI 兼容</td></tr>
+      <tr><td>信用卡</td><td class="q-good">不需要</td></tr>
+    </table>
+  </div>
+  <div class="card-code">
+    <div class="code-tabs">
+      <button class="code-tab active" onclick="showTab(this,'scn-py')">Python</button>
+    </div>
+    <button class="copy-btn" onclick="copyCode(this)">copy</button>
+    <div class="code-panel active" id="scn-py"><pre><span class="kw">from</span> openai <span class="kw">import</span> OpenAI
+client = OpenAI(
+    api_key=<span class="str">"你的超算互联网 API Key"</span>,
+    base_url=<span class="str">"https://api.scnet.cn/v1"</span>,
+)
+resp = client.chat.completions.<span class="fn">create</span>(
+    model=<span class="str">"Qwen3-30B-A3B"</span>,
+    messages=[{<span class="str">"role"</span>:<span class="str">"user"</span>,<span class="str">"content"</span>:<span class="str">"你好！"</span>}],
+)
+<span class="fn">print</span>(resp.choices[<span class="num">0</span>].message.content)</pre></div>
+  </div>
+  <div class="card-foot">
+    <a class="foot-link" href="https://www.scnet.cn" target="_blank">注册获取 Key</a>
+    <span class="foot-note">注册 → 控制台 → API Keys</span>
+  </div>
+</div>
+
 <!-- OpenCode Zen -->
 <div class="card" data-tags="cn free">
   <div class="card-head">
@@ -744,7 +860,7 @@ resp = client.chat.completions.<span class="fn">create</span>(
 <div class="section-header">
   <h2>🌐 国际平台 · 需要科学上网</h2>
   <div class="section-line"></div>
-  <div class="section-count">8 个</div>
+  <div class="section-count">12 个</div>
 </div>
 <div class="grid">
 
@@ -1140,6 +1256,198 @@ resp = requests.<span class="fn">post</span>(
   </div>
 </div>
 
+<!-- Mistral AI -->
+<div class="card" data-tags="intl free nocard">
+  <div class="card-head">
+    <div class="card-icon">🇫🇷</div>
+    <div class="card-title-group">
+      <div class="card-name">Mistral AI（La Plateforme）</div>
+      <div class="card-url">console.mistral.ai</div>
+      <div class="card-badges">
+        <span class="badge b-vpn">需翻墙</span>
+        <span class="badge b-free">10亿 token/月</span>
+        <span class="badge b-new">🆕 新增</span>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="card-desc">法国 Mistral AI 官方平台，Experiment 计划免费提供所有模型（含 Mistral Large、Codestral、Pixtral），每月 10 亿 token，是免费额度最大的国际平台。⚠️ 免费层提示词可能被用于模型训练。</div>
+    <table class="quota-table">
+      <tr><th>项目</th><th>额度 / 限制</th></tr>
+      <tr><td>每月 token</td><td class="q-good">10亿（Experiment 计划，永久免费）</td></tr>
+      <tr><td>RPM</td><td class="q-warn">2 请求/分钟</td></tr>
+      <tr><td>TPM</td><td class="q-good">50万 token/分钟</td></tr>
+      <tr><td>可用模型</td><td class="q-good">全部模型（Large / Small / Codestral / Pixtral）</td></tr>
+      <tr><td>⚠️ 隐私</td><td class="q-warn">免费层提示词可能用于训练</td></tr>
+      <tr><td>信用卡</td><td class="q-good">不需要（需手机验证）</td></tr>
+    </table>
+  </div>
+  <div class="card-code">
+    <div class="code-tabs">
+      <button class="code-tab active" onclick="showTab(this,'mist-py')">Python</button>
+    </div>
+    <button class="copy-btn" onclick="copyCode(this)">copy</button>
+    <div class="code-panel active" id="mist-py"><pre><span class="kw">from</span> openai <span class="kw">import</span> OpenAI
+client = OpenAI(
+    api_key=<span class="str">"你的 Mistral API Key"</span>,
+    base_url=<span class="str">"https://api.mistral.ai/v1"</span>,
+)
+resp = client.chat.completions.<span class="fn">create</span>(
+    model=<span class="str">"mistral-small-latest"</span>,<span class="cmt"> # 或 mistral-large-latest</span>
+    messages=[{<span class="str">"role"</span>:<span class="str">"user"</span>,<span class="str">"content"</span>:<span class="str">"Hello!"</span>}],
+)
+<span class="fn">print</span>(resp.choices[<span class="num">0</span>].message.content)</pre></div>
+  </div>
+  <div class="card-foot">
+    <a class="foot-link" href="https://console.mistral.ai" target="_blank">获取 API Key</a>
+    <span class="foot-note">注册 → 验证手机 → 选择 Experiment 计划 → API Keys</span>
+  </div>
+</div>
+
+<!-- GitHub Models -->
+<div class="card" data-tags="intl free nocard">
+  <div class="card-head">
+    <div class="card-icon">🐙</div>
+    <div class="card-title-group">
+      <div class="card-name">GitHub Models</div>
+      <div class="card-url">github.com/marketplace/models</div>
+      <div class="card-badges">
+        <span class="badge b-vpn">需翻墙</span>
+        <span class="badge b-free">GPT-4o / Llama / DeepSeek</span>
+        <span class="badge b-new">🆕 新增</span>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="card-desc">GitHub 官方模型市场，免费访问 40+ 模型（含 GPT-4o、GPT-4.1、Llama-3.1-405B、DeepSeek-R1、Mistral Large），OpenAI 兼容 API，GitHub 账号即可用，适合原型开发和 CI/CD 集成。</div>
+    <table class="quota-table">
+      <tr><th>模型层级</th><th>RPM</th><th>RPD（每日）</th></tr>
+      <tr><td>High Tier（GPT-4o / o3）</td><td class="q-warn">10</td><td class="q-warn">50</td></tr>
+      <tr><td>Low Tier（Llama-3.1-8B / Phi-4）</td><td class="q-good">15</td><td class="q-good">150</td></tr>
+      <tr><td>每请求 token 上限</td><td class="q-warn">输入 8K / 输出 4K</td></tr>
+      <tr><td>API 格式</td><td>OpenAI 兼容</td></tr>
+      <tr><td>信用卡</td><td class="q-good">不需要</td></tr>
+    </table>
+  </div>
+  <div class="card-code">
+    <div class="code-tabs">
+      <button class="code-tab active" onclick="showTab(this,'gh-py')">Python</button>
+    </div>
+    <button class="copy-btn" onclick="copyCode(this)">copy</button>
+    <div class="code-panel active" id="gh-py"><pre><span class="kw">from</span> openai <span class="kw">import</span> OpenAI
+client = OpenAI(
+    api_key=<span class="str">"你的 GitHub Personal Access Token"</span>,
+    base_url=<span class="str">"https://models.github.ai/inference"</span>,
+)
+resp = client.chat.completions.<span class="fn">create</span>(
+    model=<span class="str">"gpt-4o"</span>,<span class="cmt"> # 或 meta-llama/Llama-3.3-70B-Instruct</span>
+    messages=[{<span class="str">"role"</span>:<span class="str">"user"</span>,<span class="str">"content"</span>:<span class="str">"Hello!"</span>}],
+)
+<span class="fn">print</span>(resp.choices[<span class="num">0</span>].message.content)</pre></div>
+  </div>
+  <div class="card-foot">
+    <a class="foot-link" href="https://github.com/marketplace/models" target="_blank">浏览模型</a>
+    <span class="foot-note">Settings → Developer settings → Fine-grained token → models:read</span>
+  </div>
+</div>
+
+<!-- Hugging Face -->
+<div class="card" data-tags="intl free nocard image">
+  <div class="card-head">
+    <div class="card-icon">🤗</div>
+    <div class="card-title-group">
+      <div class="card-name">Hugging Face Inference</div>
+      <div class="card-url">huggingface.co/inference-api</div>
+      <div class="card-badges">
+        <span class="badge b-vpn">需翻墙</span>
+        <span class="badge b-free">10万+ 模型</span>
+        <span class="badge b-img">文/图/音/视频</span>
+        <span class="badge b-new">🆕 新增</span>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="card-desc">全球最大开源模型社区，Serverless Inference API 免费访问 10万+ 模型，含 Llama、Qwen、FLUX 图像生成等，支持文本/图像/音频/视频多模态，适合模型评估和快速实验。</div>
+    <table class="quota-table">
+      <tr><th>项目</th><th>额度 / 限制</th></tr>
+      <tr><td>免费速率</td><td class="q-warn">约 300 请求/小时</td></tr>
+      <tr><td>可用模型</td><td class="q-good">10万+ 开源模型</td></tr>
+      <tr><td>模型大小限制</td><td class="q-warn">大于 10GB 的模型可能无法加载</td></tr>
+      <tr><td>冷启动</td><td class="q-warn">首次调用可能有冷启动延迟</td></tr>
+      <tr><td>API 格式</td><td>OpenAI 兼容（router.huggingface.co/v1）</td></tr>
+      <tr><td>信用卡</td><td class="q-good">不需要</td></tr>
+    </table>
+  </div>
+  <div class="card-code">
+    <div class="code-tabs">
+      <button class="code-tab active" onclick="showTab(this,'hf-py')">Python</button>
+    </div>
+    <button class="copy-btn" onclick="copyCode(this)">copy</button>
+    <div class="code-panel active" id="hf-py"><pre><span class="kw">from</span> openai <span class="kw">import</span> OpenAI
+client = OpenAI(
+    api_key=<span class="str">"hf_你的 HuggingFace Token"</span>,
+    base_url=<span class="str">"https://router.huggingface.co/v1"</span>,
+)
+resp = client.chat.completions.<span class="fn">create</span>(
+    model=<span class="str">"meta-llama/Llama-3.3-70B-Instruct"</span>,
+    messages=[{<span class="str">"role"</span>:<span class="str">"user"</span>,<span class="str">"content"</span>:<span class="str">"Hello!"</span>}],
+)
+<span class="fn">print</span>(resp.choices[<span class="num">0</span>].message.content)</pre></div>
+  </div>
+  <div class="card-foot">
+    <a class="foot-link" href="https://huggingface.co/inference-api/serverless" target="_blank">获取 Token</a>
+    <span class="foot-note">Settings → Access Tokens → New token → Read 权限</span>
+  </div>
+</div>
+
+<!-- Cohere -->
+<div class="card" data-tags="intl free nocard">
+  <div class="card-head">
+    <div class="card-icon">🔗</div>
+    <div class="card-title-group">
+      <div class="card-name">Cohere</div>
+      <div class="card-url">dashboard.cohere.com</div>
+      <div class="card-badges">
+        <span class="badge b-vpn">需翻墙</span>
+        <span class="badge b-free">1000次/月</span>
+        <span class="badge b-new">🆕 新增</span>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="card-desc">Command R+ 等模型免费调用，内置 RAG 和工具调用能力，Embed-4 嵌入模型免费，每月 1000 次调用，适合检索增强生成和企业搜索场景。</div>
+    <table class="quota-table">
+      <tr><th>项目</th><th>额度 / 限制</th></tr>
+      <tr><td>每月调用</td><td class="q-warn">1000 次（所有模型合计）</td></tr>
+      <tr><td>RPM</td><td>20 请求/分钟</td></tr>
+      <tr><td>免费模型</td><td class="q-good">Command R+ / Embed-4</td></tr>
+      <tr><td>特色能力</td><td class="q-good">内置 RAG + 工具调用 + 嵌入</td></tr>
+      <tr><td>API 格式</td><td>OpenAI 兼容</td></tr>
+      <tr><td>信用卡</td><td class="q-good">不需要</td></tr>
+    </table>
+  </div>
+  <div class="card-code">
+    <div class="code-tabs">
+      <button class="code-tab active" onclick="showTab(this,'co-py')">Python</button>
+    </div>
+    <button class="copy-btn" onclick="copyCode(this)">copy</button>
+    <div class="code-panel active" id="co-py"><pre><span class="kw">from</span> openai <span class="kw">import</span> OpenAI
+client = OpenAI(
+    api_key=<span class="str">"你的 Cohere API Key"</span>,
+    base_url=<span class="str">"https://api.cohere.ai/v1"</span>,
+)
+resp = client.chat.completions.<span class="fn">create</span>(
+    model=<span class="str">"command-r-plus"</span>,
+    messages=[{<span class="str">"role"</span>:<span class="str">"user"</span>,<span class="str">"content"</span>:<span class="str">"Hello!"</span>}],
+)
+<span class="fn">print</span>(resp.choices[<span class="num">0</span>].message.content)</pre></div>
+  </div>
+  <div class="card-foot">
+    <a class="foot-link" href="https://dashboard.cohere.com" target="_blank">获取 API Key</a>
+    <span class="foot-note">注册 → API Keys → Create Key</span>
+  </div>
+</div>
+
 </div><!-- /grid intl -->
 
 <!-- ════════════════ 图像生成专用 ════════════════ -->
@@ -1306,6 +1614,99 @@ asyncio.<span class="fn">run</span>(<span class="fn">main</span>())</pre></div>
 </div>
 
 </div><!-- /grid image -->
+
+<!-- ════════════════ 前端/特殊平台 ════════════════ -->
+<div class="section-header">
+  <h2>⚡ 前端/特殊平台 · 无需后端</h2>
+  <div class="section-line"></div>
+  <div class="section-count">1 个</div>
+</div>
+<div class="grid">
+
+<!-- Puter.js -->
+<div class="card" data-tags="cn intl free nocard image">
+  <div class="card-head">
+    <div class="card-icon">🌐</div>
+    <div class="card-title-group">
+      <div class="card-name">Puter.js</div>
+      <div class="card-url">developer.puter.com</div>
+      <div class="card-badges">
+        <span class="badge b-cn">国内可访问</span>
+        <span class="badge b-free">400+ 模型免费</span>
+        <span class="badge b-img">文/图/TTS</span>
+        <span class="badge b-new">🆕 新增</span>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="card-desc">首创「User-Pays」模式：开发者免费调用，用户承担费用。一个 <code>&lt;script&gt;</code> 标签即可访问 400+ 模型（GPT-5.5、Claude Opus 4.7、Gemini、Grok、DeepSeek 等），无需 API Key、无需后端、无需信用卡。支持文本/图像/TTS，适合前端应用和快速原型。</div>
+    <table class="quota-table">
+      <tr><th>项目</th><th>额度 / 限制</th></tr>
+      <tr><td>开发者费用</td><td class="q-good">完全免费（用户承担自己的使用费）</td></tr>
+      <tr><td>可用模型</td><td class="q-good">400+（GPT-5.5 / Claude / Gemini / Grok / DeepSeek 等）</td></tr>
+      <tr><td>使用方式</td><td class="q-good">前端 JS 一行代码调用，无需后端</td></tr>
+      <tr><td>⚠️ 限制</td><td class="q-warn">浏览器优先，后端脚本需用户登录态</td></tr>
+      <tr><td>API 格式</td><td>Puter SDK + OpenAI 兼容端点</td></tr>
+      <tr><td>信用卡</td><td class="q-good">开发者不需要</td></tr>
+    </table>
+  </div>
+  <div class="card-code">
+    <div class="code-tabs">
+      <button class="code-tab active" onclick="showTab(this,'puter-js')">JavaScript（前端）</button>
+    </div>
+    <button class="copy-btn" onclick="copyCode(this)">copy</button>
+    <div class="code-panel active" id="puter-js"><pre><span class="cmt">&lt;!-- 一个 script 标签即可 --&gt;</span>
+<span class="kw">&lt;script</span> src=<span class="str">"https://js.puter.com/v2/"</span><span class="kw">&gt;&lt;/script&gt;</span>
+<span class="kw">&lt;script&gt;</span>
+puter.ai.<span class="fn">chat</span>(
+  <span class="str">"用三句话解释量子计算"</span>,
+  { model: <span class="str">"gpt-5.4-nano"</span> }
+).<span class="fn">then</span>(response => {
+  document.body.innerHTML = response;
+});
+<span class="kw">&lt;/script&gt;</span>
+<span class="cmt">// 其他模型: claude-sonnet-4-6 / gemini-2.5-flash</span>
+<span class="cmt">//          deepseek-r1 / grok-4-fast / llama-4-scout</span></pre></div>
+  </div>
+  <div class="card-foot">
+    <a class="foot-link" href="https://developer.puter.com/tutorials/free-llm-api/" target="_blank">查看文档</a>
+    <span class="foot-note">无需注册，引入 JS 即可使用</span>
+  </div>
+</div>
+
+</div><!-- /grid special -->
+
+<!-- ════════════════ 常见问题 ════════════════ -->
+<div class="section-header">
+  <h2>❓ 常见问题 FAQ</h2>
+  <div class="section-line"></div>
+</div>
+<div class="grid" style="margin-bottom:2rem">
+  <div class="card" style="border-color:rgba(78,255,176,.12)">
+    <div class="card-body" style="padding:18px">
+      <div style="font-size:13px;color:var(--accent);font-weight:500;margin-bottom:6px">Q: 免费额度用完了怎么办？</div>
+      <div class="card-desc">多数平台注册赠送的 token 有有效期，用完后需付费或等重置。建议：① 优先使用永久免费模型（智谱 GLM-4-Flash、百度 ERNIE-Speed、腾讯 hunyuan-lite）；② 多平台轮换使用；③ 火山引擎每天重置 200 万 token。</div>
+    </div>
+  </div>
+  <div class="card" style="border-color:rgba(56,217,245,.12)">
+    <div class="card-body" style="padding:18px">
+      <div style="font-size:13px;color:var(--accent2);font-weight:500;margin-bottom:6px">Q: 所有平台都兼容 OpenAI SDK 吗？</div>
+      <div class="card-desc">本页列出的 30 个平台中，29 个支持 OpenAI 兼容格式（只需改 base_url 和 api_key）。唯一例外是 Puter.js（前端 SDK 调用），但它也提供 OpenAI 兼容端点。</div>
+    </div>
+  </div>
+  <div class="card" style="border-color:rgba(167,139,250,.12)">
+    <div class="card-body" style="padding:18px">
+      <div style="font-size:13px;color:var(--accent5);font-weight:500;margin-bottom:6px">Q: 国内平台和海外平台怎么选？</div>
+      <div class="card-desc">国内平台延迟低（通常 &lt;100ms）、中文优化好、无需翻墙，但模型选择较少。国际平台模型更丰富（含 GPT/Claude/Gemini），但需翻墙且延迟较高。建议：中文任务用国内，英文/多模态用国际。</div>
+    </div>
+  </div>
+  <div class="card" style="border-color:rgba(255,201,74,.12)">
+    <div class="card-body" style="padding:18px">
+      <div style="font-size:13px;color:var(--accent4);font-weight:500;margin-bottom:6px">Q: 免费层的数据会被用于训练吗？</div>
+      <div class="card-desc">⚠️ Google AI Studio 和 Mistral 免费层明确声明提示词可能用于模型训练。如需隐私保护，优先选择智谱、火山引擎、DeepSeek 等国内平台，或使用 Groq/Cerebras 等不用于训练的国际平台。</div>
+    </div>
+  </div>
+</div>
 
 <!-- ════════════════ 参考资源 ════════════════ -->
 <div class="section-header">
